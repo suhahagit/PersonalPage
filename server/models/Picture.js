@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const pictureSchema = new Schema({
     title: String,
-    pic: {type: String, required: true}
+    pic: {type: String, required: true},
+    userName: String
 });
 
 const Picture = mongoose.model('Picture', pictureSchema);

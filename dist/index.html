@@ -1,4 +1,218 @@
-information.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome-all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="materialize-css/dist/js/materialize.min.js"></script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="/js/dataManager.js"></script>
+    <script src="/js/renderer.js"></script>
+</head>
+<body>
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="javascript:;">Settings</a></li>
+        <li class="divider"></li>
+        <li><a href="javascript:;">LogOut</a></li>
+    </ul>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="javascript:;" class="brand-logo"><i class="material-icons">assignment_ind</i>My Personal Page</a>
+            <ul class="right hide-on-med-and-down">
+            <li><input id="txt_search" type="text" placeholder="Find User" class="blue-text text-darken-2"></li>
+            <li><a id="btn_search" href="javascript:;"><i class="material-icons">search</i></a></li>
+            <li><a class="dropdown-trigger" href="javascript:;" data-target="dropdown1"><i class="material-icons">account_circle</i><i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="login">
+    </div>
+
+    <div id="register">
+    </div>
+
+    <div id="floating_addnew_item">
+        <a class="btn-floating btn-large waves-effect waves-light red"><i class="large material-icons">add</i></a>
+    </div>
+
+    <div id="navs" class="row">
+        <div class="col s2">
+          <!-- Grey navigation panel -->
+            <div class="collection">
+                <a href="javascript:;" class="collection-item menu_item active">
+                    <i class="material-icons">book</i><span class="menu_item_text">Books</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span>
+                </a>
+                <a href="javascript:;" class="collection-item menu_item">
+                    <i class="material-icons">insert_link</i><span class="menu_item_text">Links</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span>
+                </a>
+                <a href="javascript:;" class="collection-item menu_item">
+                    <i class="material-icons">local_movies</i><span class="menu_item_text">Movies</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span></a>
+                <a href="javascript:;" class="collection-item menu_item">
+                    <i class="material-icons">tv</i><span class="menu_item_text">Series</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span></a>
+                <a href="javascript:;" class="collection-item menu_item">
+                    <i class="material-icons">movie</i><span class="menu_item_text">Videos</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span></a>
+                <a href="javascript:;" class="collection-item menu_item">
+                    <i class="material-icons">event_note</i><span class="menu_item_text">Notes</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span></a>
+                <a href="javascript:;" class="collection-item menu_item">
+                    <i class="material-icons">photo</i><span class="menu_item_text">Pictures</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span></a>
+                <a href="javascript:;" class="collection-item menu_item">
+                    <i class="material-icons">format_quote</i><span class="menu_item_text">Quotes</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span></a>
+                <a href="javascript:;" class="collection-item menu_item">
+                    <i class="material-icons">room_service</i><span class="menu_item_text">Recipes</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span></a>
+                <a href="javascript:;" class="collection-item menu_item">
+                    <i class="material-icons">restaurant</i><span class="menu_item_text">Restaurants</span>
+                    <span class="new badge aquamarine" data-badge-caption="">1</span></a>
+            </div>
+        </div>
+        <div class="col s10">
+            <!-- Teal page content  -->
+            <!-- HANDLEBARS HERE -->
+            <div class="row">
+                <div class="col s2 m2">
+                  <div class="card">
+                    <div class="card-image">
+                      <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                      <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                    </div>
+                    <div class="card-content">
+                        <b><p>I am a title!</p></b>
+                        <p>I am a very simple card. I am good at containing small bits of information.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s2 m2">
+                    <div class="card">
+                      <div class="card-image">
+                        <img src="https://res.cloudinary.com/demo/image/upload/q_60/sample.jpg">
+                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">remove</i></a>
+                      </div>
+                      <div class="card-content">
+                          <b><p>I am a title!</p></b>
+                          <p>I am a very simple card. I am good at containing small bits of information.</p>
                       </div>
                     </div>
                   </div>
@@ -39,6 +253,7 @@ information.</p>
                     </div>
                   </div>
             </div>
+>>>>>
             <!-- END OF HANDLEBARS -->
         </div>
     </div>
