@@ -10,3 +10,7 @@ body {
 #navs {
     height: 93.2vh;
 }
+
+.brand-logo {
+    margin-left: 15px;
+}
