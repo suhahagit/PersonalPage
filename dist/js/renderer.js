@@ -1,11 +1,8 @@
-class Renderer {
-    constructor(){
-    }
-
-    renderData(data){
-        content.empty();
-        //TODO
-        const template = Handlebars.compile($('#Data-template').html());
-        content.append(template(data));
+class Renderer{
+    renderData = (data) => {
+        const source = $('#content-div').html();
+        const template = Handlebars.compile(source)
+        let dataHTML = template({ data })
+        $('#content-div').empty().append(citiesHTML)
     }
 }

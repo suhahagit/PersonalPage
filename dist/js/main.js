@@ -1,30 +1,90 @@
-const loginModal = function(){
+const { get } = require("jquery");
 
+//login popup upon loading page
+const loginModal = () => {
+  $("#login-pop").modal("show");
 };
 
-const checkIfLoggedIn = function(){
-    //TODO local storage
-    const isValidUser = false; //call a function to check if we have a valid user in local storage
-    if (!isValidUser){
-        //showLoginModal();
-    }
+const checkIfLoggedIn = () => {
+  const userName = $("#login-txt").val();
+  const password = $("#pass-txt").val();
+  // if(call loginUser function and validate)
+  // then continue
 };
 
-const handleSearch = async function(){
-    //TODO
-    console.log("hi");
+//search for user, and display their items (req: public)
+const searchUser = async () => {
+  const userName = $("#search-txt").val();
+  $("#search-txt").val("");
+  // call find user function
+  //render user on page
 };
 
-const loadPage = async function(){
-    //TODO
-    checkIfLoggedIn();
+//load page upon login using UName
+const loadCategory = async () => {
+  //render cat
+};
+
+const login = async () => {
+  checkIfLoggedIn();
+  loadCategory(); // books
+  //main page
+};
+
+const logout = async () => {
+  //send back to login form
+};
+
+const signUp = async () => {
+  const userName = $("#user-sign").val();
+  const password = $("#pass-sign").val();
+  //make new user + pass info, to add to DB
+  //redirect to login form
 };
 
 
-const txtSearch = $("#txt_search"),
-    btnSearch = $("#btn_search");
+//loadpage indexhtml + loadcategory
 
-btnSearch.on('click', handleSearch);
-$(".dropdown-trigger").dropdown();
+//onclick(function)
 
-loadPage();
+//const getDate = () => { }
+
+$("cocoumber").on("click", () => {
+  const category = $("#nav").find(".active .menu_item_text").val();
+  switch (category) {
+    case Book:
+      // form popup
+      break;
+    case Video:
+      // code block
+      break;
+    case Movie:
+      // code block
+      break;
+    case Photo:
+      // code block
+      break;
+    case Quote:
+      // code block
+      break;
+    case Recipe:
+      // code block
+      break;
+    case Restaurant:
+      // code block
+      break;
+    case Note:
+      // code block
+      break;
+    case Link:
+      // code block
+      break;
+    default:
+    // code block
+  }
+});
+
+const addBook = () => {};
+
+//eventlistener addObj - json
+//json -> post

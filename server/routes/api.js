@@ -14,6 +14,7 @@ const User = require('../models/User.js');
 const Video = require('../models/Video.js');
 const Books_API_KEY = "AIzaSyDSqefB9VlxkmI8tXqjzsdab5roCN4SKT0";
 const OMDB_API_KEY = "15f932bf";
+
 const Weather_API_KEY = "484da5e921c1d538aee222ffd65ca2da";
 
 router.use(session({ secret: 'ssshhhhh', saveUninitialized: true, resave: true }));
@@ -142,6 +143,7 @@ router.delete('/book/:bookName', async function (req, res) {
 });
 /* END OF BOOK SCHEME */
 
+// router.post('/book', async function(req, res){
 
 /* LINK SCHEME */
 router.get('/links/:userName', async function (req, res) {
@@ -178,6 +180,7 @@ router.delete('/link/:linkName', async function (req, res) {
 });
 /* END OF LINK SCHEME */
 
+// router.post('/link', async function(req, res){
 
 /* NOTE SCHEME */
 router.get('/notes/:userName', async function (req, res) {
@@ -214,6 +217,7 @@ router.delete('/note/:noteName', async function (req, res) {
 });
 /* END OF NOTE SCHEME */
 
+// router.post('/note', async function(req, res){
 
 /* PICTURE SCHEME */
 router.get('/pictures/:userName', async function (req, res) {
@@ -250,6 +254,7 @@ router.delete('/picture/:pictureName', async function (req, res) {
 });
 /* END OF PICTURE SCHEME */
 
+// router.post('/picture', async function(req, res){
 
 /* QUOTE SCHEME */
 router.get('/quotes/:userName', async function (req, res) {
@@ -286,6 +291,7 @@ router.delete('/quote/:quoteName', async function (req, res) {
 });
 /* END OF QUOTE SCHEME */
 
+// router.post('/quote', async function(req, res){
 
 /* RECIPE SCHEME */
 router.get('/recipes/:userName', async function (req, res) {
@@ -322,6 +328,7 @@ router.delete('/recipe/:recipeName', async function (req, res) {
 });
 /* END OF RECIPE SCHEME */
 
+// router.post('/recipe', async function(req, res){
 
 /* RESTAURANT SCHEME */
 router.get('/restaurants/:userName', async function (req, res) {
@@ -358,6 +365,7 @@ router.delete('/restaurant/:restaurantName', async function (req, res) {
 });
 /* END OF RESTAURANT SCHEME */
 
+// router.post('/restaurant', async function(req, res){
 
 /* VIDEO SCHEME */
 router.get('/videos/:userName', async function (req, res) {
@@ -394,6 +402,7 @@ router.delete('/video/:videoName', async function (req, res) {
 });
 /* END OF VIDEO SCHEME */
 
+// router.post('/video', async function(req, res){
 
 /* MOVIE SCHEME */
 router.get('/movies/:userName', async function (req, res) {
