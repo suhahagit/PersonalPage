@@ -8,9 +8,14 @@ body {
 }
 
 #navs {
-    height: 93.2vh;
+    height: 88.2vh;
 }
 
 .brand-logo {
     margin-left: 15px;
+}
+
+.page-footer {
+    margin: 0;
+    padding: 0;
 }
