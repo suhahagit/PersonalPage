@@ -1,11 +1,11 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const quoteSchema = new Schema({
-    quote: String, 
-    quoted: String 
-})
+    quote: {type: String, required: true},
+    author: String
+});
 
-const Quote = mongoose.model('Quote', quoteSchema)
+const Quote = mongoose.model('Quote', quoteSchema);
 
-module.exports = Quote
+module.exports = Quote;

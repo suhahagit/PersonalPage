@@ -1,13 +1,13 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const restaurantSchema = new Schema({
-    name: String, 
-    city: String, 
-    description: String, 
-    pic: String 
-})
+    name: {type: String, required: true},
+    city: String,
+    description: String,
+    pic: String
+});
 
-const Restaurant = mongoose.model('Restaurant', restaurantSchema)
+const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
-module.exports = Restaurant
+module.exports = Restaurant;

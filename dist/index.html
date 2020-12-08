@@ -3,16 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Page App</title>
-    <link rel = "stylesheet" href='style.css'/>
+    <title>Personal Page</title>
+    <link rel="stylesheet" href="/css/font-awesome-all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="materialize-css/dist/js/materialize.min.js"></script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="/js/dataManager.js"></script>
+    <script src="/js/renderer.js"></script>
 </head>
 <body>
-    
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!">Settings</a></li>
+        <li class="divider"></li>
+        <li><a href="#!">LogOut</a></li>
+    </ul>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="javascript:;" class="brand-logo"><i class="material-icons">cloud</i>Logo</a>
+            <ul class="right hide-on-med-and-down">
+            <li><input id="txt_search" type="text" placeholder="Find User"></li>
+            <li><a id="btn_search" href="javascript:;"><i class="material-icons">search</i></a></li>
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">User<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="login">
+    </div>
 
-    <script src="/jquery/dist/jquery.js"></script>
-    <script src="/handlebars/dist/handlebars.js"></script>
-    <script src="dataManager.js"></script>
-    <script src="renderer.js"></script>
-    <script src="main.js"></script>
+    <div id="register">
+    </div>
+
+    <div id="navs" class="row">
+        <div class="col s2">
+          <!-- Grey navigation panel -->
+            <div class="collection">
+                <a href="#!" class="collection-item active">Books</a>
+                <a href="#!" class="collection-item">Links</a>
+                <a href="#!" class="collection-item">Movies</a>
+                <a href="#!" class="collection-item">Notes</a>
+                <a href="#!" class="collection-item">Pictures</a>
+                <a href="#!" class="collection-item">Quotes</a>
+                <a href="#!" class="collection-item">Recipes</a>
+                <a href="#!" class="collection-item">Restaurants</a>
+                <a href="#!" class="collection-item">Videos</a>
+            </div>
+        </div>
+        <div class="col s10">
+          <!-- Teal page content  -->
+        </div>
+    </div>
+
+    <!-- <iframe id="iframe_books" src="books.html"></iframe>
+    <iframe id="iframe_links" src="links.html"></iframe>
+    <iframe id="iframe_notes" src="notes.html"></iframe>
+    <iframe id="iframe_pictures" src="pictures.html"></iframe>
+    <iframe id="iframe_quotes" src="quotes.html"></iframe>
+    <iframe id="iframe_recipes" src="recipes.html"></iframe>
+    <iframe id="iframe_restaurants" src="restaurants.html"></iframe>
+    <iframe id="iframe_videos" src="videos.html"></iframe>
+    <iframe id="iframe_movies" src="movies.html"></iframe>
+    <iframe id="iframe_series" src="series.html"></iframe> -->
+
+    <script src="/js/main.js"></script>
 </body>
 </html>

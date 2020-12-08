@@ -1,0 +1,12 @@
+#register {
+    display: none;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#navs {
+    height: 93.2vh;
+}

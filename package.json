@@ -1,7 +1,6 @@
 {
-  "name": "personalpage",
+  "name": "personal-page",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,7 +13,16 @@
     "express": "^4.17.1",
     "handlebars": "^4.7.6",
     "jquery": "^3.5.1",
-    "mongoose": "^5.11.4",
-    "nodemon": "^2.0.6"
-  }
+    "materialize-css": "^1.0.0-rc.2",
+    "mongoose": "^5.11.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suhahagit/PersonalPage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/suhahagit/PersonalPage/issues"
+  },
+  "homepage": "https://github.com/suhahagit/PersonalPage#readme",
+  "description": ""
 }
