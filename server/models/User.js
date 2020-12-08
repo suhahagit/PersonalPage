@@ -6,7 +6,6 @@ const userSchema = new Schema({
     password: {type: String, required: true},
     profilePic: String,
     isPublic: {type: Boolean, default: false},
-    categories: {}
 });
 
 const User = mongoose.model('User', userSchema);

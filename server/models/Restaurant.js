@@ -5,7 +5,8 @@ const restaurantSchema = new Schema({
     name: {type: String, required: true},
     city: String,
     description: String,
-    pic: String
+    pic: String,
+    userName: String
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
