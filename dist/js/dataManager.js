@@ -11,6 +11,12 @@ class User {
     const userData = await $.get(`/user/${userName}/${password}`);
     this.data = userData;
   }
+
+  async findUser(userName) {
+    const userData = await $.get(`/user/${userName}`);
+    this.data = userData;
+  }
+
   async updateUser(userName) {
     await $.ajax({
       url: `/user/${userName}`,
