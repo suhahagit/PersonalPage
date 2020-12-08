@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const session = require('express-session');
 const Book = require('../models/Book.js');
 const Link = require('../models/Link.js');
 const Movie = require('../models/Movie.js');
@@ -15,6 +16,9 @@ const Books_API_KEY = "AIzaSyDSqefB9VlxkmI8tXqjzsdab5roCN4SKT0";
 const OMDB_API_KEY = "15f932bf";
 const Weather_API_KEY = "484da5e921c1d538aee222ffd65ca2da";
 
+router.use(session({ secret: 'ssshhhhh', saveUninitialized: true, resave: true }));
+var sess;
+
 /* SANITY CHECK */
 router.get('/sanity', function (req, res) {
     //200 = OK
@@ -22,12 +26,10 @@ router.get('/sanity', function (req, res) {
 });
 /* END OF SANITY CHECK */
 
-
 /* GET WEATHER */
 router.get('/weather/:lat/:lon', async function (req, res) {
     try {
         const weatherData = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${req.params.lat}&lon=${req.params.lon}&appid=${Weather_API_KEY}&units=metric`);
-        console.log(weatherData)
         const weather = {
             temperature: weatherData.data.main.temp,
             conditionPic: `http://openweathermap.org/img/wn/${weatherData.data.weather[0].icon}@2x.png`
@@ -44,31 +46,37 @@ router.get('/weather/:lat/:lon', async function (req, res) {
 
 /* USER SCHEME */
 router.get('/user/:userName', async function (req, res) {
-    //query password (authorize user TRUE or FALSE)
     try {
         const user = await User.find({ userName: req.params.userName })
-        if (req.query.password) {
-            if (user.password == req.query.password) {
-                res.send(true)
-            } else {
-                res.send(false)
-            }
-        }
-        //else: return the user data
-        else {
+        res.send(user)
+    } catch (error) {
+        res.send(error)
+    }
+});
+
+router.post('user/login', async function (req, res) {
+    try {
+        const user = await User.find({ userName: req.params.userName })
+        if (req.params.password === user.password) {
+            sess = req.session;
+            sess.username = req.params.userName;
+            sess.password = req.params.password;
             res.send(user)
+        } else {
+            res.send(false)
         }
     } catch (error) {
         res.send(error)
     }
 });
 
-router.post('/user', async function (req, res) {
+router.post('user/register', async function (req, res) {
     try {
         const user = new User({ ...req.body })
         await user.save()
         res.send(user)
-    } catch (error) {
+    }
+    catch (error) {
         res.send(error)
     }
 });
@@ -92,14 +100,15 @@ router.get('/books/:userName', async function (req, res) {
 router.get('/book/:bookName', async function (req, res) {
     //example: `https://www.googleapis.com/books/v1/volumes?key=${Books_API_KEY}&q=the%20girl%20with`
     try {
-        const bookData = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=title:${req.params.bookName}`);
+        const bookData = await axios.get(`https://www.googleapis.com/books/v1/volumes?key=${Books_API_KEY}&q=${req.params.bookName}`);
+        //const bookData = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=title:${req.params.bookName}`
         const books = []
-        for (b of bookData.items) {
+        for (let b of bookData.data.items) {
             books.push({
                 title: b.volumeInfo.title,
                 author: b.volumeInfo.authors,
                 thumbnail: b.volumeInfo.imageLinks.thumbnail,
-                author: b.volumeInfo.description
+                description: b.volumeInfo.description
             })
         }
         res.send(books)
@@ -401,13 +410,14 @@ router.get('/movie/:movieName', async function (req, res) {
     //example: `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=mirage`
     try {
         const movieData = await axios.get(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${req.params.movieName}`);
+        console.log(movieData)
         const movie = {
-            title: movieData.title,
-            type: movieData.type,
-            plot: movieData.plot,
-            year: movieData.year,
-            pic: movieData.poster,
-            rate: movieData.ratings[0].value
+            title: movieData.data.Title,
+            type: movieData.data.Type,
+            plot: movieData.data.Plot,
+            year: movieData.data.Year,
+            pic: movieData.data.Poster,
+            rate: movieData.data.Ratings[0].value
         }
         res.send(movie)
     } catch (error) {
