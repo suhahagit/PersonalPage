@@ -41,6 +41,10 @@ footer {
     width: 100%;
 }
 
+#txt_search {
+    color: white;
+}
+
 #txt_search::placeholder {
     opacity: 0.7;
     color: whitesmoke;

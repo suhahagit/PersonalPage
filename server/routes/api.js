@@ -14,11 +14,15 @@ const User = require('../models/User.js');
 const Video = require('../models/Video.js');
 const Books_API_KEY = "AIzaSyDSqefB9VlxkmI8tXqjzsdab5roCN4SKT0";
 const OMDB_API_KEY = "15f932bf";
-
 const Weather_API_KEY = "484da5e921c1d538aee222ffd65ca2da";
 
-router.use(session({ secret: 'ssshhhhh', saveUninitialized: true, resave: true }));
-var sess;
+router.use(session({
+    secret: 'hahaha',
+    saveUninitialized: true,
+    resave: true
+}));
+let sess;
+
 
 /* SANITY CHECK */
 router.get('/sanity', function (req, res) {
@@ -36,60 +40,74 @@ router.get('/weather/:lat/:lon', async function (req, res) {
             conditionPic: `http://openweathermap.org/img/wn/${weatherData.data.weather[0].icon}@2x.png`
         }
         res.send(weather);
-    }
-    catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
         res.send(null);
     }
 });
 /* END OF WEATHER */
 
-
 /* REQUEST SESSION */
-router.get('/session', function(req, res) {
+router.get('/session', function (req, res) {
     if (sess)
-        res.send({userName: sess.userName, password: sess.password});
+        res.send({
+            userName: sess.userName,
+            password: sess.password
+        });
     else
         res.send(null);
+});
+
+router.get('/sessionDelete', function (req, res) {
+    req.session.destroy();
+    req.session = null;
+    sess = null;
+    res.send(null);
 });
 /* END OF REQUEST OF SESSION */
 
 /* USER SCHEME */
 router.get('/user/:userName', async function (req, res) {
     try {
-        const user = await User.find({ userName: req.params.userName })
-        res.send(user)
+        const user = await User.find({
+            userName: req.params.userName
+        });
+        res.send(user);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/user/login', async function (req, res) {
     try {
-        const user = await User.findOne({ userName: req.body.userName })
-        console.log(user);
+        const user = await User.findOne({
+            userName: req.body.userName
+        });
         if (req.body.password === user.password) {
-            console.log(user);
             sess = req.session;
             sess.userName = user.userName;
             sess.password = user.password;
-            res.send(user)
+            res.send(user);
         } else {
-            res.send(null)
+            res.send(null);
         }
     } catch (error) {
-        res.send(null)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/user/register', async function (req, res) {
     try {
-        const user = new User({ ...req.body })
-        await user.save()
-        res.send(user)
-    }
-    catch (error) {
-        res.send(null)
+        const user = new User({
+            ...req.body
+        });
+        await user.save();
+        res.send(user);
+    } catch (error) {
+        console.log(error);
+        res.send(null);
     }
 });
 
@@ -98,14 +116,16 @@ router.post('/user/register', async function (req, res) {
 // });
 /* END OF USER SCHEME */
 
-
 /* BOOK SCHEME */
 router.get('/books/:userName', async function (req, res) {
     try {
-        const books = await Book.find({ username: req.params.userName })
-        res.send(books)
+        const books = await Book.find({
+            username: req.params.userName
+        });
+        res.send(books);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
@@ -123,33 +143,39 @@ router.get('/book/:bookName', async function (req, res) {
                 description: b.volumeInfo.description
             })
         }
-        res.send(books)
+        res.send(books);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/book', async function (req, res) {
     try {
-        const book = new Book({ ...req.body })
+        const book = new Book({
+            ...req.body
+        });
         await book.save();
-        res.send(book)
+        res.send(book);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 // router.put('/book/:bookName', async function (req, res) {
-
 // });
 
 router.delete('/book/:bookName', async function (req, res) {
     const bookName = req.params.bookName
     try {
-        const book = await Book.remove({ bookName })
-        res.send(book)
+        const book = await Book.remove({
+            bookName
+        });
+        res.send(book);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 /* END OF BOOK SCHEME */
@@ -159,34 +185,42 @@ router.delete('/book/:bookName', async function (req, res) {
 /* LINK SCHEME */
 router.get('/links/:userName', async function (req, res) {
     try {
-        const links = await Link.find({ username: req.params.userName })
-        res.send(links)
+        const links = await Link.find({
+            username: req.params.userName
+        });
+        res.send(links);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/link', async function (req, res) {
     try {
-        const link = new Link({ ...req.body })
+        const link = new Link({
+            ...req.body
+        });
         await link.save();
-        res.send(link)
+        res.send(link);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 // router.put('/link/:linkName', async function (req, res) {
-
 // });
 
 router.delete('/link/:linkName', async function (req, res) {
     const linkName = req.params.linkName
     try {
-        const link = await Link.remove({ linkName })
-        res.send(link)
+        const link = await Link.remove({
+            linkName
+        })
+        res.send(link);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 /* END OF LINK SCHEME */
@@ -196,34 +230,42 @@ router.delete('/link/:linkName', async function (req, res) {
 /* NOTE SCHEME */
 router.get('/notes/:userName', async function (req, res) {
     try {
-        const notes = await Note.find({ username: req.params.userName })
-        res.send(notes)
+        const notes = await Note.find({
+            username: req.params.userName
+        });
+        res.send(notes);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/note', async function (req, res) {
     try {
-        const note = new Note({ ...req.body })
+        const note = new Note({
+            ...req.body
+        })
         await note.save();
-        res.send(note)
+        res.send(note);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 // router.put('/note/:noteName', async function (req, res) {
-
 // });
 
 router.delete('/note/:noteName', async function (req, res) {
     const noteName = req.params.noteName
     try {
-        const note = await Note.remove({ noteName })
-        res.send(note)
+        const note = await Note.remove({
+            noteName
+        })
+        res.send(note);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 /* END OF NOTE SCHEME */
@@ -233,34 +275,42 @@ router.delete('/note/:noteName', async function (req, res) {
 /* PICTURE SCHEME */
 router.get('/pictures/:userName', async function (req, res) {
     try {
-        const pictures = await Picture.find({ username: req.params.userName })
+        const pictures = await Picture.find({
+            username: req.params.userName
+        })
         res.send(pictures)
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/picture', async function (req, res) {
     try {
-        const picture = new Picture({ ...req.body })
+        const picture = new Picture({
+            ...req.body
+        })
         await picture.save();
-        res.send(picture)
+        res.send(picture);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 // router.put('/picture/:pictureName', async function (req, res) {
-
 // });
 
 router.delete('/picture/:pictureName', async function (req, res) {
-    const pictureName = req.params.pictureName
+    const pictureName = req.params.pictureName;
     try {
-        const picture = await Picture.remove({ pictureName })
-        res.send(picture)
+        const picture = await Picture.remove({
+            pictureName
+        });
+        res.send(picture);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 /* END OF PICTURE SCHEME */
@@ -270,34 +320,42 @@ router.delete('/picture/:pictureName', async function (req, res) {
 /* QUOTE SCHEME */
 router.get('/quotes/:userName', async function (req, res) {
     try {
-        const quotes = await Quote.find({ username: req.params.userName })
-        res.send(quotes)
+        const quotes = await Quote.find({
+            username: req.params.userName
+        });
+        res.send(quotes);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/quote', async function (req, res) {
     try {
-        const quote = new Quote({ ...req.body })
+        const quote = new Quote({
+            ...req.body
+        });
         await quote.save();
-        res.send(quote)
+        res.send(quote);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 // router.put('/quote/:quoteName', async function (req, res) {
-
 // });
 
 router.delete('/quote/:quoteName', async function (req, res) {
-    const quoteName = req.params.quoteName
+    const quoteName = req.params.quoteName;
     try {
-        const quote = await Quote.remove({ quoteName })
-        res.send(quote)
+        const quote = await Quote.remove({
+            quoteName
+        });
+        res.send(quote);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 /* END OF QUOTE SCHEME */
@@ -307,34 +365,42 @@ router.delete('/quote/:quoteName', async function (req, res) {
 /* RECIPE SCHEME */
 router.get('/recipes/:userName', async function (req, res) {
     try {
-        const recipes = await Recipe.find({ username: req.params.userName })
-        res.send(recipes)
+        const recipes = await Recipe.find({
+            username: req.params.userName
+        });
+        res.send(recipes);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/recipe', async function (req, res) {
     try {
-        const recipe = new Recipe({ ...req.body })
+        const recipe = new Recipe({
+            ...req.body
+        });
         await recipe.save();
-        res.send(recipe)
+        res.send(recipe);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 // router.put('/recipe/:recipeName', async function (req, res) {
-
 // });
 
 router.delete('/recipe/:recipeName', async function (req, res) {
-    const recipeName = req.params.recipeName
+    const recipeName = req.params.recipeName;
     try {
-        const recipe = await Recipe.remove({ recipeName })
-        res.send(recipe)
+        const recipe = await Recipe.remove({
+            recipeName
+        });
+        res.send(recipe);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 /* END OF RECIPE SCHEME */
@@ -344,34 +410,42 @@ router.delete('/recipe/:recipeName', async function (req, res) {
 /* RESTAURANT SCHEME */
 router.get('/restaurants/:userName', async function (req, res) {
     try {
-        const restaurants = await Restaurant.find({ username: req.params.userName })
-        res.send(restaurants)
+        const restaurants = await Restaurant.find({
+            username: req.params.userName
+        });
+        res.send(restaurants);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/restaurant', async function (req, res) {
     try {
-        const restaurant = new Restaurant({ ...req.body })
+        const restaurant = new Restaurant({
+            ...req.body
+        });
         await restaurant.save();
-        res.send(restaurant)
+        res.send(restaurant);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 // router.put('/restaurant/:restaurantName', async function (req, res) {
-
 // });
 
 router.delete('/restaurant/:restaurantName', async function (req, res) {
     const restaurantName = req.params.restaurantName
     try {
-        const restaurant = await Restaurant.remove({ restaurantName })
-        res.send(restaurant)
+        const restaurant = await Restaurant.remove({
+            restaurantName
+        });
+        res.send(restaurant);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 /* END OF RESTAURANT SCHEME */
@@ -381,34 +455,42 @@ router.delete('/restaurant/:restaurantName', async function (req, res) {
 /* VIDEO SCHEME */
 router.get('/videos/:userName', async function (req, res) {
     try {
-        const videos = await Video.find({ username: req.params.userName })
-        res.send(videos)
+        const videos = await Video.find({
+            username: req.params.userName
+        });
+        res.send(videos);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/video', async function (req, res) {
     try {
-        const video = new Video({ ...req.body })
+        const video = new Video({
+            ...req.body
+        });
         await video.save();
-        res.send(video)
+        res.send(video);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 // router.put('/video/:videoName', async function (req, res) {
-
 // });
 
 router.delete('/video/:videoName', async function (req, res) {
-    const videoName = req.params.videoName
+    const videoName = req.params.videoName;
     try {
-        const video = await Video.remove({ videoName })
-        res.send(video)
+        const video = await Video.remove({
+            videoName
+        });
+        res.send(video);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 /* END OF VIDEO SCHEME */
@@ -418,10 +500,13 @@ router.delete('/video/:videoName', async function (req, res) {
 /* MOVIE SCHEME */
 router.get('/movies/:userName', async function (req, res) {
     try {
-        const movies = await Movie.find({ username: req.params.userName })
-        res.send(movies)
+        const movies = await Movie.find({
+            username: req.params.userName
+        });
+        res.send(movies);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
@@ -430,7 +515,6 @@ router.get('/movie/:movieName', async function (req, res) {
     //example: `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=mirage`
     try {
         const movieData = await axios.get(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${req.params.movieName}`);
-        console.log(movieData)
         const movie = {
             title: movieData.data.Title,
             type: movieData.data.Type,
@@ -439,33 +523,39 @@ router.get('/movie/:movieName', async function (req, res) {
             pic: movieData.data.Poster,
             rate: movieData.data.Ratings[0].value
         }
-        res.send(movie)
+        res.send(movie);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 router.post('/movie', async function (req, res) {
     try {
-        const movie = new Movie({ ...req.body })
+        const movie = new Movie({
+            ...req.body
+        });
         await movie.save();
         res.send(movie)
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 
 // router.put('/movie/:movieName', async function (req, res) {
-
 // });
 
 router.delete('/movie/:movieName', async function (req, res) {
-    const movieName = req.params.movieName
+    const movieName = req.params.movieName;
     try {
-        const movie = await Movie.remove({ movieName })
-        res.send(movie)
+        const movie = await Movie.remove({
+            movieName
+        });
+        res.send(movie);
     } catch (error) {
-        res.send(error)
+        console.log(error);
+        res.send(null);
     }
 });
 /* END OF VIDEO SCHEME */

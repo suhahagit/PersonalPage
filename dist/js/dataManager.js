@@ -92,176 +92,176 @@ class Link {
 }
 
 class Note {
-    constructor() {
-      this.data = [];
-    }
-  
-    async getNotes(userName) {
-      const notesData = await $.get(`/notes/${userName}`);
-      this.data = notesData;
-    }
-  
-    async saveNote(noteName) {
-      await $.post("/note", noteName);
-    }
-  
-    async removeNote(noteName) {
-      await $.ajax({
-        url: `/note/${noteName}`,
-        method: "DELETE",
-        success: () => {
-          alert("Deleted");
-        },
-      });
-    }
+  constructor() {
+    this.data = [];
   }
 
-  class Photo {
-    constructor() {
-      this.data = [];
-    }
-  
-    async getPhotos(userName) {
-      const pictures = await $.get(`/pictures/${userName}`);
-      this.data = pictures;
-    }
-  
-    async savePhoto(photoName) {
-      await $.post("/picture", photoName);
-    }
-  
-    async removePhoto(photoName) {
-      await $.ajax({
-        url: `/picture/${photoName}`,
-        method: "DELETE",
-        success: () => {
-          alert("Deleted");
-        },
-      });
-    }
+  async getNotes(userName) {
+    const notesData = await $.get(`/notes/${userName}`);
+    this.data = notesData;
   }
 
-  class Quote {
-    constructor() {
-      this.data = [];
-    }
-  
-    async getQuotes(userName) {
-      const quotesData = await $.get(`/quotes/${userName}`);
-      this.data = quotesData;
-    }
-  
-    async saveQuote(quoteName) {
-      await $.post("/quote", quoteName);
-    }
-  
-    async removeQuote(quoteName) {
-      await $.ajax({
-        url: `/quote/${quoteName}`,
-        method: "DELETE",
-        success: () => {
-          alert("Deleted");
-        },
-      });
-    }
+  async saveNote(noteName) {
+    await $.post("/note", noteName);
   }
 
-  class Recipe {
-    constructor() {
-      this.data = [];
-    }
-  
-    async getRecipes(userName) {
-      const recipesData = await $.get(`/recipes/${userName}`);
-      this.data = recipesData;
-    }
-  
-    async saveRecipe(recipeName) {
-      await $.post("/recipe", recipeName);
-    }
-  
-    async removeRecipe(recipeName) {
-      await $.ajax({
-        url: `/recipe/${recipeName}`,
-        method: "DELETE",
-        success: () => {
-          alert("Deleted");
-        },
-      });
-    }
+  async removeNote(noteName) {
+    await $.ajax({
+      url: `/note/${noteName}`,
+      method: "DELETE",
+      success: () => {
+        alert("Deleted");
+      },
+    });
+  }
+}
+
+class Photo {
+  constructor() {
+    this.data = [];
   }
 
-  class Restaurant {
-    constructor() {
-      this.data = [];
-    }
-  
-    async getRestaurants(userName) {
-      const restaurantsData = await $.get(`/restaurants/${userName}`);
-      this.data = restaurantsData;
-    }
-  
-    async saveRestaurant(restaurantName) {
-      await $.post("/restaurant", restaurantName);
-    }
-  
-    async removeRestaurant(restaurantName) {
-      await $.ajax({
-        url: `/restaurant/${restaurantName}`,
-        method: "DELETE",
-        success: () => {
-          alert("Deleted");
-        },
-      });
-    }
+  async getPhotos(userName) {
+    const pictures = await $.get(`/pictures/${userName}`);
+    this.data = pictures;
   }
 
-  class Video {
-    constructor() {
-      this.data = [];
-    }
-  
-    async getVideos(userName) {
-      const videosData = await $.get(`/videos/${userName}`);
-      this.data = videosData;
-    }
-  
-    async saveVideo(videoName) {
-      await $.post("/video", videoName);
-    }
-  
-    async removeVideo(videoName) {
-      await $.ajax({
-        url: `/video/${videoName}`,
-        method: "DELETE",
-        success: () => {
-          alert("Deleted");
-        },
-      });
-    }
+  async savePhoto(photoName) {
+    await $.post("/picture", photoName);
   }
 
-  class Movie {
-    constructor() {
-      this.data = [];
-    }
-  
-    async getMovies(userName) {
-      const moviesData = await $.get(`/movies/${userName}`);
-      this.data = moviesData;
-    }
-  
-    async saveMovie(movieName) {
-      await $.post("/video", movieName);
-    }
-  
-    async removeMovie(movieName) {
-      await $.ajax({
-        url: `/video/${movieName}`,
-        method: "DELETE",
-        success: () => {
-          alert("Deleted");
-        },
-      });
-    }
+  async removePhoto(photoName) {
+    await $.ajax({
+      url: `/picture/${photoName}`,
+      method: "DELETE",
+      success: () => {
+        alert("Deleted");
+      },
+    });
   }
+}
+
+class Quote {
+  constructor() {
+    this.data = [];
+  }
+
+  async getQuotes(userName) {
+    const quotesData = await $.get(`/quotes/${userName}`);
+    this.data = quotesData;
+  }
+
+  async saveQuote(quoteName) {
+    await $.post("/quote", quoteName);
+  }
+
+  async removeQuote(quoteName) {
+    await $.ajax({
+      url: `/quote/${quoteName}`,
+      method: "DELETE",
+      success: () => {
+        alert("Deleted");
+      },
+    });
+  }
+}
+
+class Recipe {
+  constructor() {
+    this.data = [];
+  }
+
+  async getRecipes(userName) {
+    const recipesData = await $.get(`/recipes/${userName}`);
+    this.data = recipesData;
+  }
+
+  async saveRecipe(recipeName) {
+    await $.post("/recipe", recipeName);
+  }
+
+  async removeRecipe(recipeName) {
+    await $.ajax({
+      url: `/recipe/${recipeName}`,
+      method: "DELETE",
+      success: () => {
+        alert("Deleted");
+      },
+    });
+  }
+}
+
+class Restaurant {
+  constructor() {
+    this.data = [];
+  }
+
+  async getRestaurants(userName) {
+    const restaurantsData = await $.get(`/restaurants/${userName}`);
+    this.data = restaurantsData;
+  }
+
+  async saveRestaurant(restaurantName) {
+    await $.post("/restaurant", restaurantName);
+  }
+
+  async removeRestaurant(restaurantName) {
+    await $.ajax({
+      url: `/restaurant/${restaurantName}`,
+      method: "DELETE",
+      success: () => {
+        alert("Deleted");
+      },
+    });
+  }
+}
+
+class Video {
+  constructor() {
+    this.data = [];
+  }
+
+  async getVideos(userName) {
+    const videosData = await $.get(`/videos/${userName}`);
+    this.data = videosData;
+  }
+
+  async saveVideo(videoName) {
+    await $.post("/video", videoName);
+  }
+
+  async removeVideo(videoName) {
+    await $.ajax({
+      url: `/video/${videoName}`,
+      method: "DELETE",
+      success: () => {
+        alert("Deleted");
+      },
+    });
+  }
+}
+
+class Movie {
+  constructor() {
+    this.data = [];
+  }
+
+  async getMovies(userName) {
+    const moviesData = await $.get(`/movies/${userName}`);
+    this.data = moviesData;
+  }
+
+  async saveMovie(movieName) {
+    await $.post("/video", movieName);
+  }
+
+  async removeMovie(movieName) {
+    await $.ajax({
+      url: `/video/${movieName}`,
+      method: "DELETE",
+      success: () => {
+        alert("Deleted");
+      },
+    });
+  }
+}
