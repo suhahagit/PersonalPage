@@ -39,12 +39,24 @@ $("#form_register").on("submit", async () => {
   return false;
 });
 
+const currentWeather = () => {
+    async function success(pos){
+      const coords = await pos.coords;
+      const weatherInfo = await getAPIs.getWeather(coords.latitude, coords.longitude);
+      $("#weather").append(`<b>${weatherInfo.temperature}°C</b>`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success);
+};
+
 // login + continuous session done
 const viewByCategory = async () => {
     const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
     const data = await categoryInfo.get(categoryName, SESSION.userName);
-    renderer.renderData(data, "#" + categoryName + "-template");
+    const count = await categoryInfo.getCount(categoryName);
+    renderer.renderData(data, "#" + categoryName + "-template", count, categoryName);
     $("#menu_username").text(SESSION.userName);
+    setTimeout(currentWeather, 2000);
 };
 
 const checkIfLoggedIn = async () => {
@@ -157,6 +169,7 @@ $("#btn_find_book").on("click", async () => {
 });
 
 $("#form_modal_add_book").on("submit", async () => {
+  const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
   const bookData = {
     title: $("#add_book_title").val(),
     author: $("#add_book_author").val(),
@@ -165,6 +178,9 @@ $("#form_modal_add_book").on("submit", async () => {
     userName: SESSION.userName
   };
   const book = await categoryInfo.save("book", bookData);
+  // const count = await categoryInfo.getCount(categoryName)
+  // renderer.renderData(data, "#" + categoryName + "-template", count, categoryName);
+  viewByCategory();
   if (book.length !== 0) {
     Notify.success({
       title: "Book Added",
@@ -233,7 +249,6 @@ $("#form_modal_add_series").on('submit', function () {
   return false;
 });
 
-//========================================================================
 $("#form_modal_add_link").on("submit", async () => {
   const linkData = {
     title: $("#add_link_title").val(),
@@ -371,34 +386,6 @@ $("#form_modal_add_restaurant").on("submit", async () => {
   }
   return false;
 });
-//========================================================================
 
 $(".dropdown-trigger").dropdown();
 checkIfLoggedIn();
-
-//real-time weather
-const setWeather = async (weather) => {
-  $("#weather")
-    .append(`<div><span class=temperature>${weather.temperature}&#8451</span>
-             <span><img class='condition-pic' src=${weather.conditionPic}></span>
-    </div>`);
-};
-const currentWeather = () => {
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-  async function success(pos) {
-    const crd = await pos.coords;
-    const weatherinfo = await getAPIs.getWeather(crd.latitude, crd.longitude);
-    setWeather(weatherinfo);
-  }
-
-  function error(err){
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-  navigator.geolocation.getCurrentPosition(success, error, options);
-};
-
-currentWeather();

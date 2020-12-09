@@ -58,6 +58,10 @@ class Category {
   constructor() {
     this.data = [];
   }
+  async getCount(categoryName) {
+    const data = await $.get(`/count/${categoryName}`);
+    return data
+  }
   async get(categoryName, sess) {
     const data = await $.get(`/${categoryName}/${sess}`);
     return data

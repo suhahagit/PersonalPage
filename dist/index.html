@@ -29,6 +29,7 @@
       <div class="nav-wrapper">
         <a href="javascript:;" class="brand-logo"><i class="material-icons">assignment_ind</i>My Personal Page</a>
         <ul class="right hide-on-med-and-down">
+          <li><span id="weather"></span></li>
           <li><input id="txt_search" type="text" placeholder="Find User"></li>
           <li><a id="btn_search" href="javascript:;"><i class="material-icons">search</i></a></li>
           <li>
@@ -430,40 +431,39 @@
       <div class="col s2">
         <!-- Grey navigation panel -->
         <div class="collection">
-          <a href="javascript:;" class="collection-item menu_item active">
+          <a id='books' href="javascript:;" class="collection-item menu_item active">
             <i class="material-icons">book</i><span class="menu_item_text">Books</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span>
+            <span class="new badge aquamarine" data-badge-caption="">0</span>
           </a>
-          <a href="javascript:;" class="collection-item menu_item">
+          <a id='links' href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">insert_link</i><span class="menu_item_text">Links</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span>
+            <span class="new badge aquamarine" data-badge-caption="">0</span>
           </a>
-          <a href="javascript:;" class="collection-item menu_item">
+          <a id='movies' href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">local_movies</i><span class="menu_item_text">Movies</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span></a>
-          <a href="javascript:;" class="collection-item menu_item">
+            <span class="new badge aquamarine" data-badge-caption="">0</span></a>
+          <a id='serieses' href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">tv</i><span class="menu_item_text">Serieses</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span></a>
-          <a href="javascript:;" class="collection-item menu_item">
+            <span class="new badge aquamarine" data-badge-caption="">0</span></a>
+          <a id='videos' href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">movie</i><span class="menu_item_text">Videos</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span></a>
-          <a href="javascript:;" class="collection-item menu_item">
+            <span class="new badge aquamarine" data-badge-caption="">0</span></a>
+          <a id='notes' href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">event_note</i><span class="menu_item_text">Notes</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span></a>
-          <a href="javascript:;" class="collection-item menu_item">
+            <span class="new badge aquamarine" data-badge-caption="">0</span></a>
+          <a id='pictures' href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">photo</i><span class="menu_item_text">Pictures</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span></a>
-          <a href="javascript:;" class="collection-item menu_item">
+            <span class="new badge aquamarine" data-badge-caption="">0</span></a>
+          <a id='quotes' href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">format_quote</i><span class="menu_item_text">Quotes</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span></a>
-          <a href="javascript:;" class="collection-item menu_item">
+            <span class="new badge aquamarine" data-badge-caption="">0</span></a>
+          <a id='recipes' href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">room_service</i><span class="menu_item_text">Recipes</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span></a>
-          <a href="javascript:;" class="collection-item menu_item">
+            <span class="new badge aquamarine" data-badge-caption="">0</span></a>
+          <a id='restaurants' href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">restaurant</i><span class="menu_item_text">Restaurants</span>
-            <span class="new badge aquamarine" data-badge-caption="">1</span></a>
+            <span class="new badge aquamarine" data-badge-caption="">0</span></a>
         </div>
-        <div id="weather"></div>
       </div>
       <div class="col s10">
         <div id="content"></div>
@@ -839,7 +839,11 @@
     <!-- END OF HANDLEBARS -->
 
     <footer class="page-footer">
-      <h5 class="white-text">&nbsp;</h5>
+        <a href="https://www.facebook.com" title="Facebook" target="_blank"><img src="/images/facebook.png"></a>&nbsp;&nbsp;
+        <a href="https://www.instagram.com" title="Instagram" target="_blank"><img src="images/instagram.png"></a>&nbsp;&nbsp;
+        <a href="https://www.linkedin.com" title="LinkedIn" target="_blank"><img src="images/linkedin.png"></a>&nbsp;&nbsp;
+        <a href="https://www.twitter.com" title="Twitter" target="_blank"><img src="images/twitter.png"></a>&nbsp;&nbsp;
+        <a href="https://www.youtube.com" title="YouTube" target="_blank"><img src="images/youtube.png"></a>
     </footer>
 
     <script src="/js/main.js"></script>
