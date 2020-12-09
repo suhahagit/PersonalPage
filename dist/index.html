@@ -37,6 +37,7 @@
               </a>
             </li>
             </ul>
+            <div class = 'weather'></div>
         </div>
     </nav>
 
@@ -134,7 +135,7 @@
         <div class="col s10">
             <!-- Teal page content  -->
             <!-- HANDLEBARS HERE -->
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col s2 m2">
                   <div class="card">
                     <div class="card-image">
@@ -303,8 +304,190 @@
                       </div>
                     </div>
                   </div>
+            </div> -->
+          <!-- BEGINNING OF HANDLEBARS -->
+          <!-- BOOK SCRIPT -->
+          <script id = "books-template" type = "text/x-handlebars-template">
+            {{#each data}}
+            <div class = 'book' data-id = '{{_id}}'>
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <img src='{{thumbnail}}'>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                  </div>
+                  <div class="card-content">
+                    <b><p>{{title}}</p></b>
+                    <p>{{description}}</p>
+                    <p>-{{author}}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <!-- END OF HANDLEBARS -->
+            {{/each}}                 
+          </script>
+          <!-- END OF BOOK SCRIPT -->
+          <!-- LINK SCRIPT -->
+          <script id = "links-template" type = "text/x-handlebars-template">
+            {{#each data}}
+            <div class = 'link' data-id = '{{_id}}'>
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <a href="{{link}}">{{title}}</a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                  </div>
+                  <div class="card-content">
+                    <p>{{description}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}                 
+          </script>
+          <!-- END OF LINK SCRIPT -->
+          <!-- ENTERTAINMENT SCRIPT -->
+          <script id = "entertainments-template" type = "text/x-handlebars-template">
+            {{#each data}}
+            <div class = 'entertainment' data-id = '{{_id}}'>
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <img src='{{pic}}'>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                  </div>
+                  <div class="card-content">
+                    <b><p>{{title}}</p></b>
+                    <p>{{plot}}</p>
+                    <p>{{year}}</p>
+                    <p>{{rate}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}                 
+          </script>
+          <!-- END OF ENTERTAINMENT SCRIPT -->
+          <!-- NOTE SCRIPT -->
+          <script id = "notes-template" type = "text/x-handlebars-template">
+            {{#each data}}
+            <div class = 'note' data-id = '{{_id}}'>
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <p>{{note}}</p>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                  </div>
+                  <div class="card-content">
+                    <b><p>{{title}}</p></b>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}                 
+          </script>
+          <!-- END OF NOTE SCRIPT -->
+          <!-- PICTURE SCRIPT -->
+          <script id = "pictures-template" type = "text/x-handlebars-template">
+            {{#each data}}
+            <div class = 'picture' data-id = '{{_id}}'>
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <img src='{{pic}}'>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                  </div>
+                  <div class="card-content">
+                    <p>{{description}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}      
+          </script>
+          <!-- END OF PICTURE SCRIPT -->
+          <!-- QUOTE SCRIPT -->
+          <script id = "quotes-template" type = "text/x-handlebars-template">
+            {{#each data}}
+            <div class = 'quote' data-id = '{{_id}}'>
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <p>"{{quote}}"</p>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                  </div>
+                  <div class="card-content">
+                    <p>-{{author}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}      
+          </script>
+          <!-- END OF QUOTE SCRIPT -->
+          <!-- RECIPE SCRIPT -->
+          <script id = "recipes-template" type = "text/x-handlebars-template">
+            {{#each data}}
+            <div class = 'recipe' data-id = '{{_id}}'>
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <img src='{{pic}}'>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                  </div>
+                  <div class="card-content">
+                    <b><p>{{name}}</p></b>
+                    <p>{{description}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}      
+          </script>
+          <!-- END OF RECIPE SCRIPT -->
+          <!-- RESTAURANT SCRIPT -->
+          <script id = "restaurants-template" type = "text/x-handlebars-template">
+            {{#each data}}
+            <div class = 'restaurant' data-id = '{{_id}}'>
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <img src='{{pic}}'>
+                    <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                  </div>
+                  <div class="card-content">
+                    <b><p>{{name}}</p></b>
+                    <p>{{description}}</p>
+                    <p>{{city}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}      
+          </script>
+          <!-- END OF RESTAURANT SCRIPT -->
+          <!-- VIDEO SCRIPT -->
+          <script id = "videos-template" type = "text/x-handlebars-template">
+            {{#each data}}
+            <div class = 'video' data-id = '{{_id}}'>
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <video controls src="{{link}}">
+                    </video> 
+                    <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                  </div>
+                  <div class="card-content">
+                    <b><p>{{title}}</p></b>
+                    <p>{{description}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}      
+          </script>
+          <!-- END OF VIDEO SCRIPT -->
+          <!-- END OF HANDLEBARS -->
         </div>
     </div>
 

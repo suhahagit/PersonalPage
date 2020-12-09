@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const movieSchema = new Schema({
+const seriesSchema = new Schema({
     title: {type: String, required: true},
     plot: String,
     year: Number,
     pic: String,
     rate: Number,
     userName: String,
-    count: Number
 });
 
-const Movie = mongoose.model('Movie', movieSchema);
+const Series = mongoose.model('Series', seriesSchema);
 
-module.exports = Movie;
+module.exports = Series;
