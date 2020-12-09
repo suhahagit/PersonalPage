@@ -2,9 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const linkSchema = new Schema({
-    title: String,
+    title: {type: String, required: true},
     link: {type: String, required: true},
-    userName: String
+    description: String,
+    userName: String,
+    count: Number
 });
 
 const Link = mongoose.model('Link', linkSchema);
