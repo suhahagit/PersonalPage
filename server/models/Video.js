@@ -6,6 +6,7 @@ const videoSchema = new Schema({
     link: {type: String, required: true},
     description: String,
     userName: String,
+    count: Number
 });
 
 const Video = mongoose.model('Video', videoSchema);
