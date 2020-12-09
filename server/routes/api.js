@@ -119,8 +119,8 @@ router.post('/user/register', async function (req, res) {
 /* BOOK SCHEME */
 router.get('/books/:userName', async function (req, res) {
     try {
-        const books = await Book.find({
-            username: req.params.userName
+        const books = await Book.find({}, {
+            userName: req.params.userName
         });
         res.send(books);
     } catch (error) {
@@ -132,16 +132,16 @@ router.get('/books/:userName', async function (req, res) {
 router.get('/book/:bookName', async function (req, res) {
     //example: `https://www.googleapis.com/books/v1/volumes?key=${Books_API_KEY}&q=the%20girl%20with`
     try {
-        const bookData = await axios.get(`https://www.googleapis.com/books/v1/volumes?key=${Books_API_KEY}&q=${req.params.bookName}`);
+        const bookData = await axios.get(`https://www.googleapis.com/books/v1/volumes?key=${Books_API_KEY}&q=title:${req.params.bookName}`);
         //const bookData = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=title:${req.params.bookName}`
-        const books = []
+        const books = [];
         for (let b of bookData.data.items) {
             books.push({
                 title: b.volumeInfo.title,
                 author: b.volumeInfo.authors,
                 thumbnail: b.volumeInfo.imageLinks.thumbnail,
                 description: b.volumeInfo.description
-            })
+            });
         }
         res.send(books);
     } catch (error) {
@@ -152,9 +152,7 @@ router.get('/book/:bookName', async function (req, res) {
 
 router.post('/book', async function (req, res) {
     try {
-        const book = new Book({
-            ...req.body
-        });
+        const book = new Book({...req.body});
         await book.save();
         res.send(book);
     } catch (error) {
@@ -162,16 +160,12 @@ router.post('/book', async function (req, res) {
         res.send(null);
     }
 });
-
 // router.put('/book/:bookName', async function (req, res) {
 // });
-
-router.delete('/book/:bookName', async function (req, res) {
-    const bookName = req.params.bookName
+router.delete('/book/:bookId', async function (req, res) {
+    const id = req.params.bookId
     try {
-        const book = await Book.remove({
-            bookName
-        });
+        const book = await Book.findByIdAndRemove({id});
         res.send(book);
     } catch (error) {
         console.log(error);
