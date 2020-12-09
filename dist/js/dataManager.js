@@ -60,15 +60,15 @@ class Category {
   }
   async getCount(categoryName) {
     const data = await $.get(`/count/${categoryName}`);
-    return data
+    return data;
   }
   async get(categoryName, sess) {
     const data = await $.get(`/${categoryName}/${sess}`);
-    return data
+    return data;
   }
   async save(categoryName, Info) {
     const res = await $.post(`/${categoryName}`, Info);
-    return res
+    return res;
   }
   async remove(categoryName, itemId) {
     await $.ajax({
@@ -85,18 +85,18 @@ class Category {
 class APIs {
   async getWeather(lati, long) {
     const data = await $.get(`/weather/${lati}/${long}`);
-    return data
+    return data;
   }
   async getBook(bookName) {
     const res = await $.get(`/book/${bookName}`);
-    return res
+    return res;
   }
   async getMovie(movieName) {
     const res = await $.get(`/movie/${movieName}`);
-    return res
+    return res;
   }
   async getSeries(seriesName) {
     const res = await $.get(`/series/${seriesName}`);
-    return res
+    return res;
   }
 }
