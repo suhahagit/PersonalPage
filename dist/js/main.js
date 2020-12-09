@@ -145,9 +145,7 @@ $("#navs").on('click', '.remove-item', async function () {
   const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
   console.log(categoryName);
   await categoryInfo.remove(categoryName, id);
-  // const count = await categoryInfo.getCount(categoryName)
-  // renderer.renderData(data, "#" + categoryName + "-template", count, categoryName);
-  viewByCategory()
+  viewByCategory();
 });
 
 $("#btn_search").on("click", function () {
@@ -173,7 +171,6 @@ $("#btn_find_book").on("click", async () => {
 });
 
 $("#form_modal_add_book").on("submit", async () => {
-  const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
   const bookData = {
     title: $("#add_book_title").val(),
     author: $("#add_book_author").val(),
@@ -181,9 +178,8 @@ $("#form_modal_add_book").on("submit", async () => {
     thumbnail: $("#add_book_thumbnail").val(),
     userName: SESSION.userName
   };
+
   const book = await categoryInfo.save("book", bookData);
-  // const count = await categoryInfo.getCount(categoryName)
-  // renderer.renderData(data, "#" + categoryName + "-template", count, categoryName);
   viewByCategory();
   if (book.length !== 0) {
     Notify.success({

@@ -5,7 +5,6 @@ class Renderer {
             const template = Handlebars.compile($(handlebarScript).html());
             $('#content').append(template(data));
         }
-        $('.active').find('.badge').text(`${count}`)
-        // console.log(category)
+        $('.active').find('.badge').text(`${count}`);
     }
 }
