@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const movieSchema = new Schema({
     title: {type: String, required: true},
     plot: String,
-    year: Number,
+    year: String,
     pic: String,
-    rate: Number,
+    rate: String,
     userName: String
 });
 
