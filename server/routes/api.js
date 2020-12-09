@@ -456,7 +456,7 @@ router.get('/movie/:movieName', async function (req, res) {
             plot: movieData.data.Plot,
             year: movieData.data.Year,
             pic: movieData.data.Poster,
-            rate: movieData.data.Ratings[0].value
+            rate: movieData.data.Ratings[0].Value
         }
         res.send(movie);
     } catch (error) {
@@ -511,7 +511,7 @@ router.get('/series/:seriesName', async function (req, res) {
             plot: seriesData.data.Plot,
             year: seriesData.data.Year,
             pic: seriesData.data.Poster,
-            rate: seriesData.data.Ratings[0].value
+            rate: seriesData.data.Ratings[0].Value
         }
         res.send(series);
     } catch (error) {
