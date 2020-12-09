@@ -7,8 +7,7 @@ const seriesSchema = new Schema({
     year: Number,
     pic: String,
     rate: Number,
-    userName: String,
-    count: Number
+    userName: String
 });
 
 const Series = mongoose.model('Series', seriesSchema);

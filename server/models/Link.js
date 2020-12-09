@@ -5,8 +5,7 @@ const linkSchema = new Schema({
     title: {type: String, required: true},
     link: {type: String, required: true},
     description: String,
-    userName: String,
-    count: Number
+    userName: String
 });
 
 const Link = mongoose.model('Link', linkSchema);

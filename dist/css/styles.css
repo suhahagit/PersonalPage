@@ -65,3 +65,12 @@ footer {
     padding:0;
     margin:0;
 }
+
+.description {
+    overflow-y: scroll;
+    height: 200px;
+}
+
+.modal {
+    max-height: 80%;
+}

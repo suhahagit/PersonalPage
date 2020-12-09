@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const noteSchema = new Schema({
     title: {type: String, required: true},
     note: {type: String, required: true},
-    userName: String,
-    count: Number,
+    userName: String
 });
 
 const Note = mongoose.model('Note', noteSchema);

@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const pictureSchema = new Schema({
     description: String,
     pic: {type: String, required: true},
-    userName: String,
-    count: Number,
+    userName: String
 });
 
 const Picture = mongoose.model('Picture', pictureSchema);

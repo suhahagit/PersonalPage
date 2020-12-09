@@ -5,8 +5,7 @@ const videoSchema = new Schema({
     title: String,
     link: {type: String, required: true},
     description: String,
-    userName: String,
-    count: Number
+    userName: String
 });
 
 const Video = mongoose.model('Video', videoSchema);
