@@ -5,8 +5,7 @@ const recipeSchema = new Schema({
     name: {type: String, required: true},
     description: String,
     pic: String,
-    userName: String,
-    count: Number
+    userName: String
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);
