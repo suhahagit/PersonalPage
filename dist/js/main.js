@@ -61,18 +61,16 @@ $("#form_register").on('submit', function(){
 });
 
 const viewByCategory = function(){
-  //TODO add new item in X categories
-  const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
-  console.log(categoryName);
-  $.get(`/${categoryName}/${SESSION.userName}`, function(result) {
-    //TODO
-    console.log(result);
-    if (result.length !== 0)
+    //TODO add new item in X categories
+    const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
+    $.get(`/${categoryName}/${SESSION.userName}`, function(result) {
+    if (result.length !== 0){
+        new Renderer().renderData(result, "#books-template");
         return result;
+    }
     else
         return null;
-
-  });
+    });
 };
 
 const checkIfLoggedIn =()=>{
