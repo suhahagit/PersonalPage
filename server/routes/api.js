@@ -45,6 +45,15 @@ router.get('/weather/:lat/:lon', async function (req, res) {
 /* END OF WEATHER */
 
 
+/* REQUEST SESSION */
+router.get('/session', function(req, res) {
+    if (sess)
+        res.send({userName: sess.userName, password: sess.password});
+    else
+        res.send(null);
+});
+/* END OF REQUEST OF SESSION */
+
 /* USER SCHEME */
 router.get('/user/:userName', async function (req, res) {
     try {
@@ -55,30 +64,32 @@ router.get('/user/:userName', async function (req, res) {
     }
 });
 
-router.post('user/login', async function (req, res) {
+router.post('/user/login', async function (req, res) {
     try {
-        const user = await User.find({ userName: req.params.userName })
-        if (req.params.password === user.password) {
+        const user = await User.findOne({ userName: req.body.userName })
+        console.log(user);
+        if (req.body.password === user.password) {
+            console.log(user);
             sess = req.session;
-            sess.username = req.params.userName;
-            sess.password = req.params.password;
+            sess.userName = user.userName;
+            sess.password = user.password;
             res.send(user)
         } else {
-            res.send(false)
+            res.send(null)
         }
     } catch (error) {
-        res.send(error)
+        res.send(null)
     }
 });
 
-router.post('user/register', async function (req, res) {
+router.post('/user/register', async function (req, res) {
     try {
         const user = new User({ ...req.body })
         await user.save()
         res.send(user)
     }
     catch (error) {
-        res.send(error)
+        res.send(null)
     }
 });
 

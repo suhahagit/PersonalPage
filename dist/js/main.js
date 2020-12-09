@@ -1,82 +1,50 @@
-const { get } = require("jquery");
+var session;
 
 //login popup upon loading page
 const loginModal = () => {
-  $("#login-pop").modal("show");
+  $("#login").modal({dismissible: false});
+  $("#login").modal('open');
 };
 
 const checkIfLoggedIn = () => {
-  const userName = $("#login-txt").val();
-  const password = $("#pass-txt").val();
-  // if(call loginUser function and validate)
-  // then continue
-};
-
-//search for user, and display their items (req: public)
-const searchUser = async () => {
-  const userName = $("#search-txt").val();
-  $("#search-txt").val("");
-  // call find user function
-  //render user on page
-};
-
-//load page upon login using UName
-const loadCategory = async () => {
-  //render cat
-};
-
-const login = async () => {
-  checkIfLoggedIn();
-  loadCategory(); // books
-  //main page
-};
-
-const logout = async () => {
-  //send back to login form
-};
-
-const signUp = async () => {
-  const userName = $("#user-sign").val();
-  const password = $("#pass-sign").val();
-  //make new user + pass info, to add to DB
-  //redirect to login form
+    $.get('/session', function(ses){
+        if (ses.length !== 0)
+            session = ses;
+        else
+            loginModal();
+    });
 };
 
 
-//loadpage indexhtml + loadcategory
-
-//onclick(function)
-
-//const getDate = () => { }
 
 $("cocoumber").on("click", () => {
   const category = $("#nav").find(".active .menu_item_text").val();
   switch (category) {
-    case Book:
+    case "Book":
       // form popup
       break;
-    case Video:
+    case "Video":
       // code block
       break;
-    case Movie:
+    case "Movie":
       // code block
       break;
-    case Photo:
+    case "Photo":
       // code block
       break;
-    case Quote:
+    case "Quote":
       // code block
       break;
-    case Recipe:
+    case "Recipe":
       // code block
       break;
-    case Restaurant:
+    case "Restaurant":
       // code block
       break;
-    case Note:
+    case "Note":
       // code block
       break;
-    case Link:
+    case "Link":
       // code block
       break;
     default:
@@ -84,7 +52,60 @@ $("cocoumber").on("click", () => {
   }
 });
 
-const addBook = () => {};
 
-//eventlistener addObj - json
-//json -> post
+$("#link_to_register").on('click', function(){
+    $("#register").modal({dismissible: false});
+    $("#register").modal('open');
+    $("#login").modal('close');
+});
+
+$("#link_back_to_login").on('click', function(){
+    $("#login").modal({dismissible: false});
+    $("#login").modal('open');
+    $("#register").modal('close');
+});
+
+$("#form_login").on('submit', function(){
+    const jsonData = {userName: $("#login_username").val(), password: $("#login_password").val()};
+    $.post('/user/login', jsonData, function(user){
+        if (user.length !== 0){
+            Notify.success({
+                title : 'Welcome!',
+                html : `Welcome back ${user.userName}`
+            });
+            $("#login").modal('close');
+        }
+        else{
+            Notify.error({
+                title : 'Invalid Data',
+                html : 'Invalid username or password!'
+            });
+        }
+    });
+    return false;
+});
+
+$("#form_register").on('submit', function(){
+    const jsonData = {userName: $("#register_username").val(), password: $("#register_password").val(), isPublic: $("#ispublic_register").prop('checked')};
+
+    $.post('/user/register', jsonData, function(user){
+        if (user.length !== 0){
+            Notify.success({
+                title : 'Registration Complete!',
+                html : `Welcome ${user.userName}`
+            });
+            $("#register").modal('close');
+            $("#login").modal('open');
+        }
+        else{
+            Notify.error({
+                title : 'Failed to register',
+                html : 'Invalid data or user is already taken!'
+            });
+        }
+    });
+    return false;
+});
+
+
+checkIfLoggedIn();
