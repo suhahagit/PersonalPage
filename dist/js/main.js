@@ -141,9 +141,7 @@ $("#settings").on('click', function () {
 
 $("#navs").on('click', '.remove-item', async function () {
   const id = $(this).closest('#content').find("div").attr('data-id');
-  console.log(id);
   const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
-  console.log(categoryName);
   await categoryInfo.remove(categoryName, id);
   viewByCategory();
 });
@@ -249,6 +247,143 @@ $("#form_modal_add_series").on('submit', function () {
   return false;
 });
 
+$("#form_modal_add_link").on("submit", async () => {
+  const linkData = {
+    title: $("#add_link_title").val(),
+    link: $("#add_link").val(),
+    description: $("#add_link_description").val(),
+    userName: SESSION.userName
+  };
+  const link = await categoryInfo.save("link", linkData);
+  if (link.length !== 0) {
+    Notify.success({
+      title: "Link Added",
+      html: `"${link.title}" has been successfully added.`,
+    });
+    $("#modal_add_link").modal("close");
+  } else {
+    Notify.error({
+      title: "Invalid Data",
+      html: "Invalid parameters!",
+    });
+  }
+  return false;
+});
+
+
+$("#form_modal_add_note").on("submit", async () => {
+  const noteData = {
+    title: $("#add_note_title").val(),
+    note: $("#add_note").val(),
+    userName: SESSION.userName
+  };
+  const note = await categoryInfo.save("note", noteData);
+  if (note.length !== 0) {
+    Notify.success({
+      title: "Note Added",
+      html: `"${note.title}" has been successfully added.`,
+    });
+    $("#modal_add_note").modal("close");
+  } else {
+    Notify.error({
+      title: "Invalid Data",
+      html: "Invalid parameters!",
+    });
+  }
+  return false;
+});
+
+$("#form_modal_add_picture").on("submit", async () => {
+  const pictureData = {
+    title: $("#add_picture_title").val(),
+    description: $("#add_picture_description").val(),
+    pic: $("#add_picture").val(),
+    userName: SESSION.userName
+  };
+  const picture = await categoryInfo.save("picture", pictureData);
+  if (picture.length !== 0) {
+    Notify.success({
+      title: "Picture Added",
+      html: `"${picture.title}" has been successfully added.`,
+    });
+    $("#modal_add_picture").modal("close");
+  } else {
+    Notify.error({
+      title: "Invalid Data",
+      html: "Invalid parameters!",
+    });
+  }
+  return false;
+});
+
+$("#form_modal_add_quote").on("submit", async () => {
+  const quoteData = {
+    quote: $("#add_quote_title").val(),
+    author: $("#add_quote_author").val(),
+    userName: SESSION.userName
+  };
+  const quote = await categoryInfo.save("quote", quoteData);
+  if (quote.length !== 0) {
+    Notify.success({
+      title: "Quote Added",
+      html: `"${quote.author}" has been successfully added.`,
+    });
+    $("#modal_add_quote").modal("close");
+  } else {
+    Notify.error({
+      title: "Invalid Data",
+      html: "Invalid parameters!",
+    });
+  }
+  return false;
+});
+
+$("#form_modal_add_recipe").on("submit", async () => {
+  const recipeData = {
+    name: $("#add_recipe_title").val(),
+    description: $("#add_recipe_description").val(),
+    pic: $("#add_recipe_photo").val(),
+    userName: SESSION.userName
+  };
+  const recipe = await categoryInfo.save("recipe", recipeData);
+  if (recipe.length !== 0) {
+    Notify.success({
+      title: "Recipe Added",
+      html: `"${recipe.name}" has been successfully added.`,
+    });
+    $("#modal_add_recipe").modal("close");
+  } else {
+    Notify.error({
+      title: "Invalid Data",
+      html: "Invalid parameters!",
+    });
+  }
+  return false;
+});
+
+$("#form_modal_add_restaurant").on("submit", async () => {
+  const restaurantData = {
+    name: $("#add_restaurant_title").val(),
+    description: $("#add_restaurant_description").val(),
+    city: $("#add_restaurant_description").val(),
+    pic: $("#add_restaurant_photo").val(),
+    userName: SESSION.userName
+  };
+  const restaurant = await categoryInfo.save("restaurant", restaurantData);
+  if (restaurant.length !== 0) {
+    Notify.success({
+      title: "Restaurant Added",
+      html: `"${restaurant.name}" has been successfully added.`,
+    });
+    $("#modal_add_restaurant").modal("close");
+  } else {
+    Notify.error({
+      title: "Invalid Data",
+      html: "Invalid parameters!",
+    });
+  }
+  return false;
+});
 
 $(".dropdown-trigger").dropdown();
 checkIfLoggedIn();
