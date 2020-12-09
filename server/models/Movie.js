@@ -7,8 +7,7 @@ const movieSchema = new Schema({
     year: Number,
     pic: String,
     rate: Number,
-    userName: String,
-    count: Number
+    userName: String
 });
 
 const Movie = mongoose.model('Movie', movieSchema);

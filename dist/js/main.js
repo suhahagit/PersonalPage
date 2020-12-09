@@ -46,6 +46,18 @@ $("#form_register").on("submit", async () => {
   return false;
 });
 
+const viewByCategory = function(){
+    //TODO add new item in X categories
+    const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
+    $.get(`/${categoryName}/${SESSION.userName}`, function(result) {
+    if (result.length !== 0){
+        new Renderer().renderData(result, "#" + categoryName + "-template");
+        return result;
+    }
+    else
+        return null;
+    });
+
 const checkIfLoggedIn = async () => {
   const ses = await user.checkLog();
   if (ses.length !== 0) {
@@ -74,32 +86,79 @@ const viewByCategory = async () => {
   renderer.renderData(data, '#books-template')
 };
 
-$("#floating_addnew_item").on("click", function () {
-  //TODO, add new item to current category
-  const categoryName = $("#navs")
-    .find(".active .menu_item_text")
-    .text()
-    .toLowerCase();
-  $("#modal_add_book").modal();
-  $("#modal_add_book").modal("open");
+$("#floating_addnew_item").on('click', function(){
+    //TODO, add new item to current category
+    const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
+    switch (categoryName) {
+        case "books":
+            $("#modal_add_book").modal();
+            $("#modal_add_book").modal('open');
+            break;
+
+        case "links":
+            $("#modal_add_link").modal();
+            $("#modal_add_link").modal('open');
+            break;
+
+        case "movies":
+            $("#modal_add_movie").modal();
+            $("#modal_add_movie").modal('open');
+            break;
+
+        case "serieses":
+            $("#modal_add_series").modal();
+            $("#modal_add_series").modal('open');
+            break;
+
+        case "videos":
+            $("#modal_add_video").modal();
+            $("#modal_add_video").modal('open');
+            break;
+
+        case "notes":
+            $("#modal_add_note").modal();
+            $("#modal_add_note").modal('open');
+            break;
+
+        case "pictures":
+            $("#modal_add_picture").modal();
+            $("#modal_add_picture").modal('open');
+            break;
+
+        case "quotes":
+            $("#modal_add_quote").modal();
+            $("#modal_add_quote").modal('open');
+            break;
+
+        case "recipes":
+            $("#modal_add_recipe").modal();
+            $("#modal_add_recipe").modal('open');
+            break;
+
+        case "restaurants":
+            $("#modal_add_restaurant").modal();
+            $("#modal_add_restaurant").modal('open');
+            break;
+    }
 });
 
-$("#settings").on("click", function () {
-  //TODO
-  console.log("settings");
+$("#settings").on('click', function(){
+    //TODO
+    alert("settings");
 });
 
-$("#navs").on('click', '.remove-item', function () {
-  const id = $(this).closest('#content').find("div").attr('data-id');
-  const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
-  console.log(id)
-  console.log(categoryName)
-  dummy.remove(categoryName, id);
+$("#navs").on('click', '.remove-item', function(){
+    //TODO
+    const id = $(this).closest('#content').find("div").attr('data-id');
+    console.log(id);
+    const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
+    console.log(categoryName);
+    dummy.remove(categoryName, id);
 });
 
 $("#btn_search").on("click", function () {
   //TODO
-  console.log($("#txt_search").val());
+  alert($("#txt_search").val());
 });
 
 $(".menu_item").on("click", function () {
@@ -142,6 +201,59 @@ $("#form_modal_add_book").on("submit", async () => {
   }
   return false;
 });
+
+$("#form_modal_add_movie").on('submit', function(){
+  const jsonData = {
+      title: $("#add_movie_title").val(),
+      plot: $("#add_movie_plot").val(),
+      year: $("#add_movie_year").val(),
+      pic: $("#add_movie_pic").val(),
+      rate: $("#add_movie_rate").val(),
+      userName: SESSION.userName
+  };
+  $.post('/movie', jsonData, function(movie){
+    if (movie.length !== 0) {
+        Notify.success({
+          title: 'Movie Added',
+          html: `"${movie.title}" has been successfully added.`
+        });
+        $("#modal_add_movie").modal('close');
+    } else {
+        Notify.error({
+          title: 'Invalid Data',
+          html: 'Invalid parameters!'
+        });
+    }
+  });
+  return false;
+});
+
+$("#form_modal_add_series").on('submit', function(){
+  const jsonData = {
+      title: $("#add_series_title").val(),
+      plot: $("#add_series_plot").val(),
+      year: $("#add_series_year").val(),
+      pic: $("#add_series_pic").val(),
+      rate: $("#add_series_rate").val(),
+      userName: SESSION.userName
+  };
+  $.post('/series', jsonData, function(series){
+    if (series.length !== 0) {
+        Notify.success({
+          title: 'Series Added',
+          html: `"${series.title}" has been successfully added.`
+        });
+        $("#modal_add_series").modal('close');
+    } else {
+        Notify.error({
+          title: 'Invalid Data',
+          html: 'Invalid parameters!'
+        });
+    }
+  });
+  return false;
+});
+
 
 $(".dropdown-trigger").dropdown();
 checkIfLoggedIn();

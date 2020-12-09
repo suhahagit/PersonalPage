@@ -6,8 +6,7 @@ const restaurantSchema = new Schema({
     city: String,
     description: String,
     pic: String,
-    userName: String,
-    count: Number
+    userName: String
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);

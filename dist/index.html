@@ -132,12 +132,296 @@
             <label for="add_book_thumbnail">Thumbnail</label>
           </div>
           <br><br>
-          <input id="add_book_submit" type="submit" value="Add" class="btn btn-large">
+          <input type="submit" value="Add" class="btn btn-large">
         </form>
       </div>
     </div>
-    <!--end of books modal-->
-    <!-- end of Modal Categories -->
+    <!-- end of book modal-->
+    <!-- movie modal -->
+    <div id="modal_add_movie" class="modal">
+      <h5 class="modal-close">&#10005;</h5>
+      <div class="modal-content center">
+        <h4>Add Movie</h4>
+        <hr><br>
+        <div class="input-field">
+          <i class="material-icons prefix">movie</i>
+          <input type="text" id="txt_find_movie" required>
+          <label for="add_movie_title">Find Movie</label>
+          <input id="btn_find_movie" type="button" class="btn btn-medium" value="Find Movie">
+        </div>
+        <hr>
+        <form id="form_modal_add_movie" action="javascript:;">
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" id="add_movie_title" required pattern=".{3,40}"
+              title="minimum 3 letters, no special chars">
+            <label for="add_movie_title">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="number" id="add_movie_year" required
+              title="minimum 3 letters, no special chars">
+            <label for="add_movie_year">Year</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" id="add_movie_plot">
+            <label for="add_movie_plot">Plot</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" id="add_movie_pic">
+            <label for="add_movie_pic">Pic</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="number" id="add_movie_rate">
+            <label for="add_movie_rate">Rate</label>
+          </div>
+          <br><br>
+          <input type="submit" value="Add" class="btn btn-large">
+        </form>
+      </div>
+    </div>
+    <!-- end of movie modal -->
+    <!-- series modal -->
+    <div id="modal_add_series" class="modal">
+      <h5 class="modal-close">&#10005;</h5>
+      <div class="modal-content center">
+        <h4>Add Series</h4>
+        <hr><br>
+        <div class="input-field">
+          <i class="material-icons prefix">movie</i>
+          <input type="text" id="txt_find_series" required>
+          <label for="add_series_title">Find Movie</label>
+          <input id="btn_find_series" type="button" class="btn btn-medium" value="Find Series">
+        </div>
+        <hr>
+        <form id="form_modal_add_series" action="javascript:;">
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" id="add_series_title" required pattern=".{3,40}"
+              title="minimum 3 letters, no special chars">
+            <label for="add_series_title">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="number" id="add_series_year" required
+              title="minimum 3 letters, no special chars">
+            <label for="add_series_year">Year</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" id="add_series_plot">
+            <label for="add_series_plot">Plot</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" id="add_series_pic">
+            <label for="add_series_pic">Pic</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="number" id="add_series_rate">
+            <label for="add_series_rate">Rate</label>
+          </div>
+          <br><br>
+          <input type="submit" value="Add" class="btn btn-large">
+        </form>
+      </div>
+    </div>
+    <!-- end of series modal -->
+    <!-- links modal -->
+    <div id="modal_add_link" class="modal">
+      <h5 class="modal-close">&#10005;</h5>
+      <div class="modal-content center">
+        <h4>Add Link</h4>
+        <form id="form_modal_add_link" action="javascript:;">
+          <div class="input-field">
+            <i class="material-icons prefix">insert_link</i>
+            <input type="text" id="add_link_title" required pattern=".{3,40}" title="minimum 3 letters, no special chars">
+            <label for="add_link_title">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">insert_link</i>
+            <input type="text" id="add_link" required>
+            <label for="add_link">Link</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">insert_link</i>
+            <input type="text" id="add_description">
+            <label for="add_link_description">Description</label>
+          </div>
+          <br><br>
+          <input id="add_link_submit" type="submit" value="Add" class="btn btn-large">
+        </form>
+      </div>
+    </div>
+    <!-- end of links modal -->
+
+    <!-- picture modal -->
+    <div id="modal_add_picture" class="modal">
+      <h5 class="modal-close">&#10005;</h5>
+      <div class="modal-content center">
+        <h4>Add Picture</h4>
+        <form id="form_modal_add_picture" action="javascript:;">
+          <div class="input-field">
+            <i class="material-icons prefix">photo</i>
+            <input type="text" id="add_picture_title" required pattern=".{3,40}" title="minimum 3 letters, no special chars">
+            <label for="add_picture_title">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">photo</i>
+            <input type="text" id="add_picture" required>
+            <label for="add_picture">Photo</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">photo</i>
+            <input type="text" id="add_description">
+            <label for="add_picture_description">Description</label>
+          </div>
+          <br><br>
+          <input id="add_picture_submit" type="submit" value="Add" class="btn btn-large">
+        </form>
+      </div>
+    </div>
+    <!-- end of picture modal -->
+
+    <!-- note modal -->
+    <div id="modal_add_note" class="modal">
+      <h5 class="modal-close">&#10005;</h5>
+      <div class="modal-content center">
+        <h4>Add Note</h4>
+        <form id="form_modal_add_note" action="javascript:;">
+          <div class="input-field">
+            <i class="material-icons prefix">event_note</i>
+            <input type="text" id="add_note_title" required pattern=".{2,}" title="minimum 3 letters, no special chars">
+            <label for="add_note_title">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">event_note</i>
+            <input type="text" id="add_note" required pattern="[a-zA-Z0-9 _.':,-]{2,}" title="minimum 3 letters, no special chars">
+            <label for="add_note">Note</label>
+          </div>
+          <br><br>
+          <input id="add_note_submit" type="submit" value="Add" class="btn btn-large">
+        </form>
+      </div>
+    </div>
+    <!-- end of note modal -->
+
+    <!-- quote modal -->
+    <div id="modal_add_quote" class="modal">
+      <h5 class="modal-close">&#10005;</h5>
+      <div class="modal-content center">
+        <h4>Add Quote</h4>
+        <form id="form_modal_add_quote" action="javascript:;">
+          <div class="input-field">
+            <i class="material-icons prefix">format_quote</i>
+            <input type="text" id="add_quote_title" required pattern=".{3,40}" title="minimum 3 letters, no special chars">
+            <label for="add_quote_title">Quote</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">format_quote</i>
+            <input type="text" id="add_quote_author" pattern="[a-zA-Z0-9 _.':,-]{0,40}" title="no special chars">
+            <label for="add_quote_author">Author</label>
+          </div>
+          <br><br>
+          <input id="add_quote_submit" type="submit" value="Add" class="btn btn-large">
+        </form>
+      </div>
+    </div>
+    <!-- end of quote modal -->
+
+    <!-- recipe modal -->
+    <div id="modal_add_recipe" class="modal">
+      <h5 class="modal-close">&#10005;</h5>
+      <div class="modal-content center">
+        <h4>Add Recipe</h4>
+        <form id="form_modal_add_recipe" action="javascript:;">
+          <div class="input-field">
+            <i class="material-icons prefix">room_service</i>
+            <input type="text" id="add_recipe_title" required pattern=".{3,40}"
+              title="minimum 3 letters, no special chars">
+            <label for="add_recipe_title">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">room_service</i>
+            <input type="text" id="add_recipe_description" required pattern="[a-zA-Z0-9 _.':,-/\]{3,40}" title="minimum 3 letters, no special chars">
+            <label for="add_recipe_description">Recipe</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">room_service</i>
+            <input type="text" id="add_recipe_photo">
+            <label for="add_recipe_photo">Photo</label>
+          </div>
+          <br><br>
+          <input id="add_photo_submit" type="submit" value="Add" class="btn btn-large">
+        </form>
+      </div>
+    </div>
+    <!-- end of recipe modal -->
+
+    <!-- restaurant modal -->
+    <div id="modal_add_restaurant" class="modal">
+      <h5 class="modal-close">&#10005;</h5>
+      <div class="modal-content center">
+        <h4>Add Restaurant</h4>
+        <form id="form_modal_add_restaurant" action="javascript:;">
+          <div class="input-field">
+            <i class="material-icons prefix">restaurant</i>
+            <input type="text" id="add_restaurant_title" required pattern=".{3,40}" title="minimum 3 letters, no special chars">
+            <label for="add_restaurant_title">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">restaurant</i>
+            <input type="text" id="add_restaurant_description" title="minimum 3 letters, no special chars">
+            <label for="add_restaurant_description">Description</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">restaurant</i>
+            <input type="text" id="add_restaurant_photo">
+            <label for="add_restaurant_photo">Photo</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">restaurant</i>
+            <input type="text" id="add_restaurant_city" pattern="[a-zA-Z0-9 _.':,-]{0,40}" title="no special chars">
+            <label for="add_restaurant_city">City</label>
+          </div>
+          <br><br>
+          <input id="add_restaurant_submit" type="submit" value="Add" class="btn btn-large">
+        </form>
+      </div>
+    </div>
+    <!-- end of restaurant modal -->
+
+    <!-- video modal -->
+    <div id="modal_add_video" class="modal">
+      <h5 class="modal-close">&#10005;</h5>
+      <div class="modal-content center">
+        <h4>Add Video</h4>
+        <form id="form_modal_add_video" action="javascript:;">
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" id="add_video_title" required pattern=".{3,40}" title="minimum 3 letters, no special chars">
+            <label for="add_video_title">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" id="add_video_description">
+            <label for="add_video_description">Description</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">movie</i>
+            <input type="text" id="add_video_link" required>
+            <label for="add_video_link">Link</label>
+          </div>
+          <br><br>
+          <input id="add_video_submit" type="submit" value="Add" class="btn btn-large">
+        </form>
+      </div>
+    </div>
+    <!-- end of video modal -->
 
     <div id="floating_addnew_item">
       <a class="btn-floating btn-large waves-effect waves-light red"><i class="large material-icons">add</i></a>
@@ -159,7 +443,7 @@
             <i class="material-icons">local_movies</i><span class="menu_item_text">Movies</span>
             <span class="new badge aquamarine" data-badge-caption="">1</span></a>
           <a href="javascript:;" class="collection-item menu_item">
-            <i class="material-icons">tv</i><span class="menu_item_text">Series</span>
+            <i class="material-icons">tv</i><span class="menu_item_text">Serieses</span>
             <span class="new badge aquamarine" data-badge-caption="">1</span></a>
           <a href="javascript:;" class="collection-item menu_item">
             <i class="material-icons">movie</i><span class="menu_item_text">Videos</span>
@@ -363,19 +647,18 @@
     <!-- BOOK SCRIPT -->
     <script id="books-template" type="text/x-handlebars-template">
       {{#each this}}
-        <div class='book' data-id='{{this._id}}'>
+        <div data-id='{{this._id}}' class='book'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
                 <img src='{{this.thumbnail}}'>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
-                    class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
                   <p>{{this.title}}</p>
                 </b>
-                <p>{{this.description}}</p>
+                <p class="description">{{this.description}}</p>
                 <p>-{{this.author}}</p>
               </div>
             </div>
@@ -392,8 +675,7 @@
             <div class="card">
               <div class="card-image">
                 <a href="{{this.link}}">{{this.title}}</a>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
-                    class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <p>{{this.description}}</p>
@@ -412,8 +694,7 @@
             <div class="card">
               <div class="card-image">
                 <img src='{{this.pic}}'>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
-                    class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
@@ -437,8 +718,7 @@
             <div class="card">
               <div class="card-image">
                 <p>{{this.note}}</p>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
-                    class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
@@ -459,8 +739,7 @@
             <div class="card">
               <div class="card-image">
                 <img src='{{this.pic}}'>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
-                    class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <p>{{this.description}}</p>
@@ -479,8 +758,7 @@
             <div class="card">
               <div class="card-image">
                 <p>"{{this.quote}}"</p>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
-                    class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <p>-{{this.author}}</p>
@@ -499,8 +777,7 @@
             <div class="card">
               <div class="card-image">
                 <img src='{{this.pic}}'>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
-                    class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
@@ -522,8 +799,7 @@
             <div class="card">
               <div class="card-image">
                 <img src='{{this.pic}}'>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
-                    class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
@@ -547,8 +823,7 @@
               <div class="card-image">
                 <video controls src="{{this.link}}">
                 </video>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
-                    class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
@@ -569,6 +844,6 @@
     </footer>
 
     <script src="/js/main.js"></script>
-  </body>
+    </body>
 
 </html>
