@@ -45,3 +45,11 @@ footer {
     opacity: 0.7;
     color: whitesmoke;
 }
+
+#login, #register {
+    width: 30%;
+}
+
+#btn_login, #btn_register {
+    width: 40%;
+}
