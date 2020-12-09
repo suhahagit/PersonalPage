@@ -594,46 +594,37 @@ router.get('/count/:categoryName', async function (req, res) {
         let count
         switch (req.params.categoryName) {
             case "books":
-                count = await Book.count({});
-                res.send(count);
+                count = await Book.countDocuments({});
                 break;
             case "links":
-                count = await Link.count({});
-                res.send(count);
+                count = await Link.countDocuments({});
                 break;
             case "movies":
-                count = await Movie.count({});
-                res.send(count);
+                count = await Movie.countDocuments({});
                 break;
             case "serieses":
-                count = await Note.count({});
-                res.send(count);
+                count = await Note.countDocuments({});
                 break;
             case "videos":
-                count = await Video.count({});
-                res.send(count);
+                count = await Video.countDocuments({});
                 break;
             case "notes":
-                count = await Note.count({});
-                res.send(count);
+                count = await Note.countDocuments({});
                 break;
             case "pictures":
-                count = await Picture.count({});
-                res.send(count);
+                count = await Picture.countDocuments({});
                 break;
             case "quotes":
-                count = await Quote.count({});
-                res.send(count);
+                count = await Quote.countDocuments({});
                 break;
             case "recipes":
-                count = await Recipe.count({});
-                res.send(count);
+                count = await Recipe.countDocuments({});
                 break;
             case "restaurants":
                 count = await Restaurant.count({});
-                res.send(count);
                 break;
         }
+        res.json(count);
     } catch (error) {
         console.log(error);
         res.send(null);
