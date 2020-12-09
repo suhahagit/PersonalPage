@@ -69,9 +69,7 @@ router.get('/sessionDelete', function (req, res) {
 /* USER SCHEME */
 router.get('/user/:userName', async function (req, res) {
     try {
-        const user = await User.find({
-            userName: req.params.userName
-        });
+        const user = await User.find({userName: req.params.userName});
         res.send(user);
     } catch (error) {
         console.log(error);
@@ -100,9 +98,7 @@ router.post('/user/login', async function (req, res) {
 
 router.post('/user/register', async function (req, res) {
     try {
-        const user = new User({
-            ...req.body
-        });
+        const user = new User({...req.body});
         await user.save();
         res.send(user);
     } catch (error) {
@@ -119,9 +115,7 @@ router.post('/user/register', async function (req, res) {
 /* BOOK SCHEME */
 router.get('/books/:userName', async function (req, res) {
     try {
-        const books = await Book.find({
-            userName: req.params.userName
-        });
+        const books = await Book.find({userName: req.params.userName});
         res.send(books);
     } catch (error) {
         console.log(error);
@@ -165,7 +159,6 @@ router.post('/book', async function (req, res) {
 router.delete('/books/:bookId', async function (req, res) {
     try {
         const book = await Book.findByIdAndRemove({ _id: req.params.bookId });
-        console.log(book)
         res.send(book);
     } catch (error) {
         console.log(error);
@@ -179,9 +172,7 @@ router.delete('/books/:bookId', async function (req, res) {
 /* LINK SCHEME */
 router.get('/links/:userName', async function (req, res) {
     try {
-        const links = await Link.find({
-            userName: req.params.userName
-        });
+        const links = await Link.find({userName: req.params.userName});
         res.send(links);
     } catch (error) {
         console.log(error);
@@ -191,9 +182,7 @@ router.get('/links/:userName', async function (req, res) {
 
 router.post('/link', async function (req, res) {
     try {
-        const link = new Link({
-            ...req.body
-        });
+        const link = new Link({...req.body});
         await link.save();
         res.send(link);
     } catch (error) {
@@ -207,7 +196,7 @@ router.post('/link', async function (req, res) {
 
 router.delete('/links/:linkID', async function (req, res) {
     try {
-        const link = await Link.findByIdAndRemove({ _id: req.params.linkID })
+        const link = await Link.findByIdAndRemove({ _id: req.params.linkID });
         res.send(link);
     } catch (error) {
         console.log(error);
@@ -221,9 +210,7 @@ router.delete('/links/:linkID', async function (req, res) {
 /* NOTE SCHEME */
 router.get('/notes/:userName', async function (req, res) {
     try {
-        const notes = await Note.find({
-            userName: req.params.userName
-        });
+        const notes = await Note.find({userName: req.params.userName});
         res.send(notes);
     } catch (error) {
         console.log(error);
@@ -233,9 +220,7 @@ router.get('/notes/:userName', async function (req, res) {
 
 router.post('/note', async function (req, res) {
     try {
-        const note = new Note({
-            ...req.body
-        })
+        const note = new Note({...req.body});
         await note.save();
         res.send(note);
     } catch (error) {
@@ -249,7 +234,7 @@ router.post('/note', async function (req, res) {
 
 router.delete('/notes/:noteID', async function (req, res) {
     try {
-        const note = await Note.findByIdAndRemove({ _id: req.params.noteID })
+        const note = await Note.findByIdAndRemove({ _id: req.params.noteID });
         res.send(note);
     } catch (error) {
         console.log(error);
@@ -263,9 +248,7 @@ router.delete('/notes/:noteID', async function (req, res) {
 /* PICTURE SCHEME */
 router.get('/pictures/:userName', async function (req, res) {
     try {
-        const pictures = await Picture.find({
-            userName: req.params.userName
-        })
+        const pictures = await Picture.find({userName: req.params.userName});
         res.send(pictures)
     } catch (error) {
         console.log(error);
@@ -275,9 +258,7 @@ router.get('/pictures/:userName', async function (req, res) {
 
 router.post('/picture', async function (req, res) {
     try {
-        const picture = new Picture({
-            ...req.body
-        })
+        const picture = new Picture({...req.body});
         await picture.save();
         res.send(picture);
     } catch (error) {
@@ -305,9 +286,7 @@ router.delete('/pictures/:pictureID', async function (req, res) {
 /* QUOTE SCHEME */
 router.get('/quotes/:userName', async function (req, res) {
     try {
-        const quotes = await Quote.find({
-            userName: req.params.userName
-        });
+        const quotes = await Quote.find({userName: req.params.userName});
         res.send(quotes);
     } catch (error) {
         console.log(error);
@@ -317,9 +296,7 @@ router.get('/quotes/:userName', async function (req, res) {
 
 router.post('/quote', async function (req, res) {
     try {
-        const quote = new Quote({
-            ...req.body
-        });
+        const quote = new Quote({...req.body});
         await quote.save();
         res.send(quote);
     } catch (error) {
@@ -347,9 +324,7 @@ router.delete('/quotes/:quoteID', async function (req, res) {
 /* RECIPE SCHEME */
 router.get('/recipes/:userName', async function (req, res) {
     try {
-        const recipes = await Recipe.find({
-            userName: req.params.userName
-        });
+        const recipes = await Recipe.find({userName: req.params.userName});
         res.send(recipes);
     } catch (error) {
         console.log(error);
@@ -359,9 +334,7 @@ router.get('/recipes/:userName', async function (req, res) {
 
 router.post('/recipe', async function (req, res) {
     try {
-        const recipe = new Recipe({
-            ...req.body
-        });
+        const recipe = new Recipe({...req.body});
         await recipe.save();
         res.send(recipe);
     } catch (error) {
@@ -389,9 +362,7 @@ router.delete('/recipes/:recipeID', async function (req, res) {
 /* RESTAURANT SCHEME */
 router.get('/restaurants/:userName', async function (req, res) {
     try {
-        const restaurants = await Restaurant.find({
-            userName: req.params.userName
-        });
+        const restaurants = await Restaurant.find({userName: req.params.userName});
         res.send(restaurants);
     } catch (error) {
         console.log(error);
@@ -401,9 +372,7 @@ router.get('/restaurants/:userName', async function (req, res) {
 
 router.post('/restaurant', async function (req, res) {
     try {
-        const restaurant = new Restaurant({
-            ...req.body
-        });
+        const restaurant = new Restaurant({...req.body});
         await restaurant.save();
         res.send(restaurant);
     } catch (error) {
@@ -431,9 +400,7 @@ router.delete('/restaurants/:restaurantId', async function (req, res) {
 /* VIDEO SCHEME */
 router.get('/videos/:userName', async function (req, res) {
     try {
-        const videos = await Video.find({
-            userName: req.params.userName
-        });
+        const videos = await Video.find({userName: req.params.userName});
         res.send(videos);
     } catch (error) {
         console.log(error);
@@ -443,9 +410,7 @@ router.get('/videos/:userName', async function (req, res) {
 
 router.post('/video', async function (req, res) {
     try {
-        const video = new Video({
-            ...req.body
-        });
+        const video = new Video({...req.body});
         await video.save();
         res.send(video);
     } catch (error) {
@@ -473,9 +438,7 @@ router.delete('/videos/:videoId', async function (req, res) {
 /* MOVIE SCHEME */
 router.get('/movies/:userName', async function (req, res) {
     try {
-        const movies = await Movie.find({
-            userName: req.params.userName
-        });
+        const movies = await Movie.find({userName: req.params.userName});
         res.send(movies);
     } catch (error) {
         console.log(error);
@@ -504,11 +467,9 @@ router.get('/movie/:movieName', async function (req, res) {
 
 router.post('/movie', async function (req, res) {
     try {
-        const movie = new Movie({
-            ...req.body
-        });
+        const movie = new Movie({...req.body});
         await movie.save();
-        res.send(movie)
+        res.send(movie);
     } catch (error) {
         console.log(error);
         res.send(null);
@@ -532,9 +493,7 @@ router.delete('/movies/:movieId', async function (req, res) {
 /* SERIES SCHEME */
 router.get('/serieses/:userName', async function (req, res) {
     try {
-        const serieses = await Series.find({
-            userName: req.params.userName
-        });
+        const serieses = await Series.find({userName: req.params.userName});
         res.send(serieses);
     } catch (error) {
         console.log(error);
@@ -563,9 +522,7 @@ router.get('/series/:seriesName', async function (req, res) {
 
 router.post('/series', async function (req, res) {
     try {
-        const series = new Series({
-            ...req.body
-        });
+        const series = new Series({...req.body});
         await series.save();
         res.send(series)
     } catch (error) {

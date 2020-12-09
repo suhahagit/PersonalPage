@@ -49,12 +49,16 @@ const currentWeather = () => {
     navigator.geolocation.getCurrentPosition(success);
 };
 
+const renderContent = async function(){
+  const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
+  const data = await categoryInfo.get(categoryName, SESSION.userName);
+  const count = await categoryInfo.getCount(categoryName);
+  renderer.renderData(data, "#" + categoryName + "-template", count, categoryName);
+};
+
 // login + continuous session done
 const viewByCategory = async () => {
-    const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
-    const data = await categoryInfo.get(categoryName, SESSION.userName);
-    const count = await categoryInfo.getCount(categoryName);
-    renderer.renderData(data, "#" + categoryName + "-template", count, categoryName);
+    renderContent();
     $("#menu_username").text(SESSION.userName);
     setTimeout(currentWeather, 2000);
 };
@@ -143,7 +147,7 @@ $("#navs").on('click', '.remove-item', async function () {
   const id = $(this).closest('#content').find("div").attr('data-id');
   const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
   await categoryInfo.remove(categoryName, id);
-  viewByCategory();
+  renderContent();
 });
 
 $("#btn_search").on("click", function () {
@@ -155,7 +159,7 @@ $(".menu_item").on("click", function () {
   $(".menu_item").removeClass("active");
   $(this).addClass("active");
   //show category items
-  viewByCategory();
+  renderContent();
 });
 
 $("#btn_find_book").on("click", async () => {
@@ -178,7 +182,7 @@ $("#form_modal_add_book").on("submit", async () => {
   };
 
   const book = await categoryInfo.save("book", bookData);
-  viewByCategory();
+  renderContent();
   if (book.length !== 0) {
     Notify.success({
       title: "Book Added",

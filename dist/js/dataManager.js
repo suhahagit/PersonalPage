@@ -75,7 +75,10 @@ class Category {
       url: `/${categoryName}/${itemId}`,
       method: "DELETE",
       success: () => {
-        alert("Deleted");
+        Notify.success({
+          title: "Item Deleted",
+          html: "Item has been successfully deleted.",
+        });
       },
     });
   }
