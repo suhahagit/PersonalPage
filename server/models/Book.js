@@ -7,7 +7,6 @@ const bookSchema = new Schema({
     author: String,
     thumbnail: String,
     userName: String,
-    count: Number
 });
 
 const Book = mongoose.model('Book', bookSchema);

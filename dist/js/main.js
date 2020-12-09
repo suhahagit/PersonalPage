@@ -100,6 +100,7 @@ $("#settings").on('click', function(){
 
 $(".remove-item").on('click', function(){
     //TODO
+    const object = $(this).closest('.city').find('.name').text()
     console.log("must remove this item");
 });
 
@@ -141,7 +142,8 @@ $("#form_modal_add_book").on('submit', function(){
         title: $("#add_book_title").val(),
         author: $("#add_book_author").val(),
         description: $("#add_book_description").val(),
-        thumbnail: $("#add_book_thumbnail").val()
+        thumbnail: $("#add_book_thumbnail").val(),
+        userName: SESSION.userName
     };
     $.post('/book', jsonData, function (book){
       if (book.length !== 0) {

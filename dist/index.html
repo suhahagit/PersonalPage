@@ -137,6 +137,7 @@
         </form>
       </div>
     </div>
+    <!--end of books modal-->
     <!-- end of Modal Categories -->
 
     <div id="floating_addnew_item">
@@ -385,17 +386,17 @@
     <!-- END OF BOOK SCRIPT -->
     <!-- LINK SCRIPT -->
     <script id="links-template" type="text/x-handlebars-template">
-      {{#each data}}
-        <div class='link' data-id='{{_id}}'>
+      {{#each this}}
+        <div class='link' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
-                <a href="{{link}}">{{title}}</a>
+                <a href="{{this.link}}">{{this.title}}</a>
                 <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
                     class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
-                <p>{{description}}</p>
+                <p>{{this.description}}</p>
               </div>
             </div>
           </div>
@@ -405,22 +406,22 @@
     <!-- END OF LINK SCRIPT -->
     <!-- ENTERTAINMENT SCRIPT -->
     <script id="entertainments-template" type="text/x-handlebars-template">
-      {{#each data}}
-        <div class='entertainment' data-id='{{_id}}'>
+      {{#each this}}
+        <div class='entertainment' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
-                <img src='{{pic}}'>
+                <img src='{{this.pic}}'>
                 <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
                     class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
-                  <p>{{title}}</p>
+                  <p>{{this.title}}</p>
                 </b>
-                <p>{{plot}}</p>
-                <p>{{year}}</p>
-                <p>{{rate}}</p>
+                <p>{{this.plot}}</p>
+                <p>{{this.year}}</p>
+                <p>{{this.rate}}</p>
               </div>
             </div>
           </div>
@@ -430,18 +431,18 @@
     <!-- END OF ENTERTAINMENT SCRIPT -->
     <!-- NOTE SCRIPT -->
     <script id="notes-template" type="text/x-handlebars-template">
-      {{#each data}}
-        <div class='note' data-id='{{_id}}'>
+      {{#each this}}
+        <div class='note' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
-                <p>{{note}}</p>
+                <p>{{this.note}}</p>
                 <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
                     class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
-                  <p>{{title}}</p>
+                  <p>{{this.title}}</p>
                 </b>
               </div>
             </div>
@@ -452,17 +453,17 @@
     <!-- END OF NOTE SCRIPT -->
     <!-- PICTURE SCRIPT -->
     <script id="pictures-template" type="text/x-handlebars-template">
-      {{#each data}}
-        <div class='picture' data-id='{{_id}}'>
+      {{#each this}}
+        <div class='picture' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
-                <img src='{{pic}}'>
+                <img src='{{this.pic}}'>
                 <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
                     class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
-                <p>{{description}}</p>
+                <p>{{this.description}}</p>
               </div>
             </div>
           </div>
@@ -472,17 +473,17 @@
     <!-- END OF PICTURE SCRIPT -->
     <!-- QUOTE SCRIPT -->
     <script id="quotes-template" type="text/x-handlebars-template">
-      {{#each data}}
-        <div class='quote' data-id='{{_id}}'>
+      {{#each this}}
+        <div class='quote' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
-                <p>"{{quote}}"</p>
+                <p>"{{this.quote}}"</p>
                 <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
                     class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
-                <p>-{{author}}</p>
+                <p>-{{this.author}}</p>
               </div>
             </div>
           </div>
@@ -492,20 +493,20 @@
     <!-- END OF QUOTE SCRIPT -->
     <!-- RECIPE SCRIPT -->
     <script id="recipes-template" type="text/x-handlebars-template">
-      {{#each data}}
-        <div class='recipe' data-id='{{_id}}'>
+      {{#each this}}
+        <div class='recipe' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
-                <img src='{{pic}}'>
+                <img src='{{this.pic}}'>
                 <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
                     class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
-                  <p>{{name}}</p>
+                  <p>{{this.name}}</p>
                 </b>
-                <p>{{description}}</p>
+                <p>{{this.description}}</p>
               </div>
             </div>
           </div>
@@ -515,21 +516,21 @@
     <!-- END OF RECIPE SCRIPT -->
     <!-- RESTAURANT SCRIPT -->
     <script id="restaurants-template" type="text/x-handlebars-template">
-      {{#each data}}
-        <div class='restaurant' data-id='{{_id}}'>
+      {{#each this}}
+        <div class='restaurant' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
-                <img src='{{pic}}'>
+                <img src='{{this.pic}}'>
                 <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
                     class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
-                  <p>{{name}}</p>
+                  <p>{{this.name}}</p>
                 </b>
-                <p>{{description}}</p>
-                <p>{{city}}</p>
+                <p>{{this.description}}</p>
+                <p>{{this.city}}</p>
               </div>
             </div>
           </div>
@@ -539,21 +540,21 @@
     <!-- END OF RESTAURANT SCRIPT -->
     <!-- VIDEO SCRIPT -->
     <script id="videos-template" type="text/x-handlebars-template">
-      {{#each data}}
-        <div class='video' data-id='{{_id}}'>
+      {{#each this}}
+        <div class='video' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
-                <video controls src="{{link}}">
+                <video controls src="{{this.link}}">
                 </video>
                 <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i
                     class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <b>
-                  <p>{{title}}</p>
+                  <p>{{this.title}}</p>
                 </b>
-                <p>{{description}}</p>
+                <p>{{this.description}}</p>
               </div>
             </div>
           </div>
