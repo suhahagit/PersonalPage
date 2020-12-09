@@ -61,8 +61,9 @@ class Category {
   constructor() {
     this.data = [];
   }
-  async get(categoryName) {
-    const data = await $.get(`/${categoryName}/${SESSION.userName}`);
+  async get(categoryName, sess) {
+    const data = await $.get(`/${categoryName}/${sess}`);
+    return data
   }
   async save(categoryName, Info) {
     const res = await $.post(`/${categoryName}`, Info);
