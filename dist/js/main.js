@@ -1,62 +1,48 @@
 let SESSION;
+const user = new User();
+const dummy = new Category();
+const extra = new Extra();
+const renderer = new Renderer();
 
-$("#link_to_register").on('click', function(){
-    $("#register").modal({dismissible: false});
-    $("#register").modal('open');
-    $("#login").modal('close');
+// const callWeather=async()=>{
+// const weather = await extra.getWeather(51.5074, 0.1278)
+// console.log(weather)
+// $('#weather').append(`<div><span class=temperature>${weather.temperature}&#8451</span>
+
+//     <span><img class='condition-pic' src=${weather.conditionPic}></span>
+//     <span class='condition-status'>${weather.condition}</span>
+//  </div>`)}
+
+// callWeather()
+
+$("#link_to_register").on("click", function () {
+  $("#register").modal({ dismissible: false });
+  $("#register").modal("open");
+  $("#login").modal("close");
 });
 
-$("#link_back_to_login").on('click', function(){
-    $("#login").modal({dismissible: false});
-    $("#login").modal('open');
-    $("#register").modal('close');
+$("#link_back_to_login").on("click", function () {
+  $("#login").modal({ dismissible: false });
+  $("#login").modal("open");
+  $("#register").modal("close");
 });
 
-$("#form_login").on('submit', function(){
-  const jsonData = {
-      userName: $("#login_username").val(),
-      password: $("#login_password").val()
+$("#form_login").on("submit", async () => {
+  const loginData = {
+    userName: $("#login_username").val(),
+    password: $("#login_password").val(),
   };
-  $.post('/user/login', jsonData, function (user){
-    if (user.length !== 0) {
-        Notify.success({
-          title: 'Welcome User',
-          html: `Welcome back ${user.userName} :)`
-        });
-        $("#login").modal('close');
-        checkIfLoggedIn();
-    } else {
-        Notify.error({
-          title: 'Invalid Data',
-          html: 'Invalid username or password!'
-        });
-    }
-  });
+  await user.LoginUser(loginData);
   return false;
 });
 
-$("#form_register").on('submit', function(){
-  const jsonData = {
+$("#form_register").on("submit", async () => {
+  const userData = {
     userName: $("#register_username").val(),
     password: $("#register_password").val(),
-    isPublic: $("#ispublic_register").prop('checked')
+    isPublic: $("#ispublic_register").prop("checked"),
   };
-
-  $.post('/user/register', jsonData, function(user){
-    if (user.length !== 0) {
-        Notify.success({
-          title: 'Registration Complete!',
-          html: `Welcome ${user.userName}`
-        });
-        $("#register").modal('close');
-        $("#login").modal('open');
-    } else {
-        Notify.error({
-          title: 'Failed Registration',
-          html: 'Invalid data or user is already taken!'
-        });
-    }
-  });
+  await user.RegisterUser(userData);
   return false;
 });
 
@@ -71,19 +57,33 @@ const viewByCategory = function(){
     else
         return null;
     });
+
+const checkIfLoggedIn = async () => {
+  const ses = await user.checkLog();
+  if (ses.length !== 0) {
+    SESSION = ses;
+    viewByCategory();
+  } else {
+    $("#login").modal({ dismissible: false });
+    $("#login").modal("open");
+  }
 };
 
-const checkIfLoggedIn =()=>{
-  $.get('/session', function (ses){
-      if (ses.length !== 0){
-        SESSION = ses;
-        viewByCategory();
-      }
-      else {
-        $("#login").modal({dismissible: false});
-        $("#login").modal('open');
-      }
+$("#logout").on("click", function () {
+  console.log("good");
+  $.get("/sessionDelete", function (n) {
+    location.reload();
   });
+});
+
+// login + continuous session done
+const viewByCategory = async () => {
+  const categoryName = $("#navs")
+    .find(".active .menu_item_text")
+    .text()
+    .toLowerCase();
+  const data = await dummy.get(categoryName, SESSION.userName);
+  renderer.renderData(data, '#books-template')
 };
 
 $("#floating_addnew_item").on('click', function(){
@@ -153,66 +153,53 @@ $("#navs").on('click', '.remove-item', function(){
     console.log(id);
     const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
     console.log(categoryName);
-    //dummy.remove(categoryName, id);
-    console.log("must remove this item");
+    dummy.remove(categoryName, id);
 });
 
-$("#btn_search").on('click', function(){
+$("#btn_search").on("click", function () {
   //TODO
   alert($("#txt_search").val());
 });
 
-$(".menu_item").on('click', function(){
-    $(".menu_item").removeClass("active");
-    $(this).addClass("active");
-    //show category items
-    viewByCategory();
+$(".menu_item").on("click", function () {
+  $(".menu_item").removeClass("active");
+  $(this).addClass("active");
+  //show category items
+  viewByCategory();
 });
 
-$("#logout").on('click', function(){
-    console.log("good");
-    $.get('/sessionDelete', function(n) {
-        location.reload();
+$("#btn_find_book").on("click", async () => {
+  const bookName = encodeURI($("#txt_find_book").val());
+  const books = await extra.getBook(bookName)
+  $("#add_book_title").val(books[0].title);
+  if (books[0].author) $("#add_book_author").val(books[0].author[0]);
+  if (books[0].description)
+    $("#add_book_description").val(books[0].description);
+  if (books[0].thumbnail) $("#add_book_thumbnail").val(books[0].thumbnail);
+});
+
+$("#form_modal_add_book").on("submit", async () => {
+  const bookData = {
+    title: $("#add_book_title").val(),
+    author: $("#add_book_author").val(),
+    description: $("#add_book_description").val(),
+    thumbnail: $("#add_book_thumbnail").val(),
+    userName: SESSION.userName
+  };
+  const book = await dummy.save("book", bookData);
+  if (book.length !== 0) {
+    Notify.success({
+      title: "Book Added",
+      html: `"${book.title}" has been successfully added.`,
     });
-});
-
-$("#btn_find_book").on('click', function(){
-    const bookName = encodeURI($("#txt_find_book").val());
-    $.get(`/book/${bookName}`, function(books){
-      if (books.length !== 0){
-          $("#add_book_title").val(books[0].title);
-          $("#add_book_author").val(books[0].author[0]);
-          if (books[0].description)
-            $("#add_book_description").val(books[0].description);
-          if (books[0].thumbnail)
-            $("#add_book_thumbnail").val(books[0].thumbnail);
-      }
-  });
-});
-
-$("#form_modal_add_book").on('submit', function(){
-    const jsonData = {
-        title: $("#add_book_title").val(),
-        author: $("#add_book_author").val(),
-        description: $("#add_book_description").val(),
-        thumbnail: $("#add_book_thumbnail").val(),
-        userName: SESSION.userName
-    };
-    $.post('/book', jsonData, function(book){
-      if (book.length !== 0) {
-          Notify.success({
-            title: 'Book Added',
-            html: `"${book.title}" has been successfully added.`
-          });
-          $("#modal_add_book").modal('close');
-      } else {
-          Notify.error({
-            title: 'Invalid Data',
-            html: 'Invalid parameters!'
-          });
-      }
+    $("#modal_add_book").modal("close");
+  } else {
+    Notify.error({
+      title: "Invalid Data",
+      html: "Invalid parameters!",
     });
-    return false;
+  }
+  return false;
 });
 
 $("#form_modal_add_movie").on('submit', function(){
@@ -270,3 +257,29 @@ $("#form_modal_add_series").on('submit', function(){
 
 $(".dropdown-trigger").dropdown();
 checkIfLoggedIn();
+
+//real-time weather
+const setWeather = async (weather) => {
+  $("#weather")
+    .append(`<div><span class=temperature>${weather.temperature}&#8451</span>
+             <span><img class='condition-pic' src=${weather.conditionPic}></span>
+    </div>`);
+};
+const currentWeather = () => {
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+  async function success(pos) {
+    const crd = await pos.coords;
+    console.log("Your current position is:");
+    const weatherinfo = await extra.getWeather(crd.latitude, crd.longitude);
+    setWeather(weatherinfo);
+  }
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  navigator.geolocation.getCurrentPosition(success, error, options);
+};
+currentWeather();

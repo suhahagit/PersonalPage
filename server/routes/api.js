@@ -24,7 +24,6 @@ router.use(session({
 }));
 let sess;
 
-
 /* SANITY CHECK */
 router.get('/sanity', function (req, res) {
     //200 = OK
@@ -153,7 +152,7 @@ router.get('/book/:bookName', async function (req, res) {
 
 router.post('/book', async function (req, res) {
     try {
-        const book = new Book({...req.body});
+        const book = new Book({ ...req.body });
         await book.save();
         res.send(book);
     } catch (error) {
@@ -163,10 +162,10 @@ router.post('/book', async function (req, res) {
 });
 // router.put('/book/:bookName', async function (req, res) {
 // });
-router.delete('/book/:bookId', async function (req, res) {
-    const id = req.params.bookId
+router.delete('/books/:bookId', async function (req, res) {
     try {
-        const book = await Book.findByIdAndRemove({id});
+        const book = await Book.findByIdAndRemove({ _id: req.params.bookId });
+        console.log(book)
         res.send(book);
     } catch (error) {
         console.log(error);
@@ -206,12 +205,9 @@ router.post('/link', async function (req, res) {
 // router.put('/link/:linkName', async function (req, res) {
 // });
 
-router.delete('/link/:linkID', async function (req, res) {
-    const linkID = req.params.linkID
+router.delete('/links/:linkID', async function (req, res) {
     try {
-        const link = await Link.findByIdAndRemove({
-            linkID
-        })
+        const link = await Link.findByIdAndRemove({ _id: req.params.linkID })
         res.send(link);
     } catch (error) {
         console.log(error);
@@ -251,12 +247,9 @@ router.post('/note', async function (req, res) {
 // router.put('/note/:noteName', async function (req, res) {
 // });
 
-router.delete('/note/:noteID', async function (req, res) {
-    const noteID = req.params.noteID
+router.delete('/notes/:noteID', async function (req, res) {
     try {
-        const note = await Note.findByIdAndRemove({
-            noteID
-        })
+        const note = await Note.findByIdAndRemove({ _id: req.params.noteID })
         res.send(note);
     } catch (error) {
         console.log(error);
@@ -296,12 +289,9 @@ router.post('/picture', async function (req, res) {
 // router.put('/picture/:pictureName', async function (req, res) {
 // });
 
-router.delete('/picture/:pictureID', async function (req, res) {
-    const pictureID = req.params.pictureID;
+router.delete('/pictures/:pictureID', async function (req, res) {
     try {
-        const picture = await Picture.findByIdAndRemove({
-            pictureID
-        });
+        const picture = await Picture.findByIdAndRemove({ _id: req.params.pictureID });
         res.send(picture);
     } catch (error) {
         console.log(error);
@@ -341,12 +331,9 @@ router.post('/quote', async function (req, res) {
 // router.put('/quote/:quoteName', async function (req, res) {
 // });
 
-router.delete('/quote/:quoteID', async function (req, res) {
-    const quoteID = req.params.quoteID;
+router.delete('/quotes/:quoteID', async function (req, res) {
     try {
-        const quote = await Quote.findByIdAndRemove({
-            quoteID
-        });
+        const quote = await Quote.findByIdAndRemove({ _id: req.params.quoteID });
         res.send(quote);
     } catch (error) {
         console.log(error);
@@ -386,12 +373,9 @@ router.post('/recipe', async function (req, res) {
 // router.put('/recipe/:recipeName', async function (req, res) {
 // });
 
-router.delete('/recipe/:recipeID', async function (req, res) {
-    const recipeID = req.params.recipeID;
+router.delete('/recipes/:recipeID', async function (req, res) {
     try {
-        const recipe = await Recipe.findByIdAndRemove({
-            recipeID
-        });
+        const recipe = await Recipe.findByIdAndRemove({ _id: req.params.recipeID });
         res.send(recipe);
     } catch (error) {
         console.log(error);
@@ -431,12 +415,9 @@ router.post('/restaurant', async function (req, res) {
 // router.put('/restaurant/:restaurantName', async function (req, res) {
 // });
 
-router.delete('/restaurant/:restaurantId', async function (req, res) {
-    const restaurantId = req.params.restaurantId
+router.delete('/restaurants/:restaurantId', async function (req, res) {
     try {
-        const restaurant = await Restaurant.findByIdAndRemove({
-            restaurantId
-        });
+        const restaurant = await Restaurant.findByIdAndRemove({ _id: req.params.restaurantId });
         res.send(restaurant);
     } catch (error) {
         console.log(error);
@@ -476,12 +457,9 @@ router.post('/video', async function (req, res) {
 // router.put('/video/:videoName', async function (req, res) {
 // });
 
-router.delete('/video/:videoId', async function (req, res) {
-    const videoId = req.params.videoId;
+router.delete('/videos/:videoId', async function (req, res) {
     try {
-        const video = await Video.findByIdAndRemove({
-            videoId
-        });
+        const video = await Video.findByIdAndRemove({ _id: req.params.videoId });
         res.send(video);
     } catch (error) {
         console.log(error);
@@ -540,12 +518,9 @@ router.post('/movie', async function (req, res) {
 // router.put('/movie/:movieName', async function (req, res) {
 // });
 
-router.delete('/movie/:movieId', async function (req, res) {
-    const movieId = req.params.movieId;
+router.delete('/movies/:movieId', async function (req, res) {
     try {
-        const movie = await Movie.findByIdAndRemove({
-            movieId
-        });
+        const movie = await Movie.findByIdAndRemove({ _id: req.params.movieId });
         res.send(movie);
     } catch (error) {
         console.log(error);
@@ -602,12 +577,9 @@ router.post('/series', async function (req, res) {
 // router.put('/series/:seriesName', async function (req, res) {
 // });
 
-router.delete('/series/:seriesId', async function (req, res) {
-    const seriesId = req.params.seriesId;
+router.delete('/serieses/:seriesId', async function (req, res) {
     try {
-        const series = await Series.findByIdAndRemove({
-            seriesId
-        });
+        const series = await Series.findByIdAndRemove({ _id: req.params.seriesId });
         res.send(series);
     } catch (error) {
         console.log(error);
@@ -616,6 +588,58 @@ router.delete('/series/:seriesId', async function (req, res) {
 });
 /* END OF SERIES SCHEME */
 
+/* GET COUNT */
+router.get('/count/:categoryName', async function (req, res) {
+    try {
+        let count
+        switch (req.params.categoryName) {
+            case "books":
+                count = await Book.count({});
+                res.send(count);
+                break;
+            case "links":
+                count = await Link.count({});
+                res.send(count);
+                break;
+            case "movies":
+                count = await Movie.count({});
+                res.send(count);
+                break;
+            case "serieses":
+                count = await Note.count({});
+                res.send(count);
+                break;
+            case "videos":
+                count = await Video.count({});
+                res.send(count);
+                break;
+            case "notes":
+                count = await Note.count({});
+                res.send(count);
+                break;
+            case "pictures":
+                count = await Picture.count({});
+                res.send(count);
+                break;
+            case "quotes":
+                count = await Quote.count({});
+                res.send(count);
+                break;
+            case "recipes":
+                count = await Recipe.count({});
+                res.send(count);
+                break;
+            case "restaurants":
+                count = await Restaurant.count({});
+                res.send(count);
+                break;
+        }
+    } catch (error) {
+        console.log(error);
+        res.send(null);
+    }
+});
+/* END OF COUNT */
 
 
 module.exports = router;
