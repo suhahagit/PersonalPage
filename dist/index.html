@@ -41,8 +41,8 @@
         </div>
     </nav>
 
-    <!-- Modal Structure -->
-    <!-- login -->
+    <!-- Modal Structures (Login / Register) -->
+    <!-- Login -->
     <div id="login" class="modal">
         <div class="modal-content center">
           <h4>Login Form</h4>
@@ -63,7 +63,7 @@
           </form>
         </div>
     </div>
-    <!-- register -->
+    <!-- Register -->
     <div id="register" class="modal">
         <div class="modal-content center">
           <h4>Register Form</h4>
@@ -89,6 +89,49 @@
           </form>
         </div>
     </div>
+    <!-- end of Modal Structures -->
+
+    <!-- Modal Categories -->
+    <!-- books modal -->
+    <div id="modal_add_book" class="modal">
+        <h5 class="modal-close">&#10005;</h5>
+        <div class="modal-content center">
+            <h4>Add Book</h4>
+            <hr><br>
+            <div class="input-field">
+                <i class="material-icons prefix">book</i>
+                <input type="text" id="txt_find_book" required>
+                <label for="add_book_title">Find Book</label>
+                <input id="btn_find_book" type="button" class="btn btn-medium" value="Find Book">
+            </div>
+            <hr>
+            <form id="form_modal_add_book" action="javascript:;">
+                <div class="input-field">
+                    <i class="material-icons prefix">book</i>
+                    <input type="text" id="add_book_title" required pattern=".{3,40}" title="minimum 3 letters, no special chars">
+                    <label for="add_book_title">Title</label>
+                </div>
+                <div class="input-field">
+                  <i class="material-icons prefix">book</i>
+                  <input type="text" id="add_book_author" required pattern="[a-zA-Z0-9 _.':,-]{3,40}" title="minimum 3 letters, no special chars">
+                  <label for="add_book_author">Author</label>
+                </div>
+                <div class="input-field">
+                  <i class="material-icons prefix">book</i>
+                  <input type="text" id="add_book_description">
+                  <label for="add_book_description">Description</label>
+                </div>
+                <div class="input-field">
+                  <i class="material-icons prefix">book</i>
+                  <input type="text" id="add_book_thumbnail" required>
+                  <label for="add_book_thumbnail">Thumbnail</label>
+                </div>
+                <br><br>
+                <input id="add_book_submit" type="submit" value="Add" class="btn btn-large">
+            </form>
+        </div>
+    </div>
+    <!-- end of Modal Categories -->
 
     <div id="floating_addnew_item">
         <a class="btn-floating btn-large waves-effect waves-light red"><i class="large material-icons">add</i></a>
