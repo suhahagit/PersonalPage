@@ -1,10 +1,11 @@
 class Renderer {
-    renderData(data) {
-        const source = $('#content-div').html();
-        const template = Handlebars.compile(source);
-        let dataHTML = template({
-            data
-        });
-        $('#content-div').empty().append(citiesHTML);
+    renderData(data, handlebarScript){
+        console.log(data);
+        console.log(handlebarScript);
+        $('#content').empty();
+        if (data.length !== 0){
+            const template = Handlebars.compile($(handlebarScript).html());
+            $('#content').append(template(data));
+        }
     }
 }
