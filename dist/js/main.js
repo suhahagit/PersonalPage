@@ -198,8 +198,18 @@ $("#form_modal_add_book").on("submit", async () => {
   return false;
 });
 
-$("#form_modal_add_movie").on('submit', function () {
-  const jsonData = {
+$("#btn_find_movie").on("click", async () => {
+  const movieName = encodeURI($("#txt_find_movie").val());
+  const movie = await getAPIs.getMovie(movieName)
+  $("#add_movie_title").val(movie.title);
+  $("#add_movie_plot").val(movie.plot);
+  $("#add_movie_year").val(movie.year);
+  $("#add_movie_pic").val(movie.pic);
+  $("#add_movie_rate").val(movie.rate);
+});
+
+$("#form_modal_add_movie").on('submit', async () => {
+  const movieData = {
     title: $("#add_movie_title").val(),
     plot: $("#add_movie_plot").val(),
     year: $("#add_movie_year").val(),
@@ -208,7 +218,8 @@ $("#form_modal_add_movie").on('submit', function () {
     userName: SESSION.userName
   };
 
-  $.post('/movie', jsonData, function (movie) {
+  const movie = await categoryInfo.save("movie", movieData);
+  renderContent();
     if (movie.length !== 0) {
       Notify.success({
         title: 'Movie Added',
@@ -220,13 +231,23 @@ $("#form_modal_add_movie").on('submit', function () {
         title: 'Invalid Data',
         html: 'Invalid parameters!'
       });
-    }
-  });
+    
+  }
   return false;
 });
 
-$("#form_modal_add_series").on('submit', function () {
-  const jsonData = {
+$("#btn_find_series").on("click", async () => {
+  const seriesName = encodeURI($("#txt_find_series").val());
+  const series = await getAPIs.getMovie(seriesName)
+  $("#add_series_title").val(series.title);
+  $("#add_series_plot").val(series.plot);
+  $("#add_series_year").val(series.year);
+  $("#add_series_pic").val(series.pic);
+  $("#add_series_rate").val(series.rate);
+});
+
+$("#form_modal_add_series").on('submit', async () => {
+  const seriesData = {
     title: $("#add_series_title").val(),
     plot: $("#add_series_plot").val(),
     year: $("#add_series_year").val(),
@@ -234,7 +255,9 @@ $("#form_modal_add_series").on('submit', function () {
     rate: $("#add_series_rate").val(),
     userName: SESSION.userName
   };
-  $.post('/series', jsonData, function (series) {
+
+  const series = await categoryInfo.save("series", seriesData);
+  renderContent();
     if (series.length !== 0) {
       Notify.success({
         title: 'Series Added',
@@ -246,8 +269,8 @@ $("#form_modal_add_series").on('submit', function () {
         title: 'Invalid Data',
         html: 'Invalid parameters!'
       });
-    }
-  });
+    
+  }
   return false;
 });
 
@@ -259,6 +282,7 @@ $("#form_modal_add_link").on("submit", async () => {
     userName: SESSION.userName
   };
   const link = await categoryInfo.save("link", linkData);
+  renderContent();
   if (link.length !== 0) {
     Notify.success({
       title: "Link Added",
@@ -282,6 +306,7 @@ $("#form_modal_add_note").on("submit", async () => {
     userName: SESSION.userName
   };
   const note = await categoryInfo.save("note", noteData);
+  renderContent();
   if (note.length !== 0) {
     Notify.success({
       title: "Note Added",
@@ -305,6 +330,7 @@ $("#form_modal_add_picture").on("submit", async () => {
     userName: SESSION.userName
   };
   const picture = await categoryInfo.save("picture", pictureData);
+  renderContent();
   if (picture.length !== 0) {
     Notify.success({
       title: "Picture Added",
@@ -327,6 +353,7 @@ $("#form_modal_add_quote").on("submit", async () => {
     userName: SESSION.userName
   };
   const quote = await categoryInfo.save("quote", quoteData);
+  renderContent();
   if (quote.length !== 0) {
     Notify.success({
       title: "Quote Added",
@@ -350,6 +377,7 @@ $("#form_modal_add_recipe").on("submit", async () => {
     userName: SESSION.userName
   };
   const recipe = await categoryInfo.save("recipe", recipeData);
+  renderContent();
   if (recipe.length !== 0) {
     Notify.success({
       title: "Recipe Added",
@@ -369,17 +397,42 @@ $("#form_modal_add_restaurant").on("submit", async () => {
   const restaurantData = {
     name: $("#add_restaurant_title").val(),
     description: $("#add_restaurant_description").val(),
-    city: $("#add_restaurant_description").val(),
+    city: $("#add_restaurant_city").val(),
     pic: $("#add_restaurant_photo").val(),
     userName: SESSION.userName
   };
   const restaurant = await categoryInfo.save("restaurant", restaurantData);
+  renderContent();
   if (restaurant.length !== 0) {
     Notify.success({
       title: "Restaurant Added",
       html: `"${restaurant.name}" has been successfully added.`,
     });
     $("#modal_add_restaurant").modal("close");
+  } else {
+    Notify.error({
+      title: "Invalid Data",
+      html: "Invalid parameters!",
+    });
+  }
+  return false;
+});
+
+$("#form_modal_add_video").on("submit", async () => {
+  const videoData = {
+    title: $("#add_video_title").val(),
+    description: $("#add_video_description").val(),
+    link: $("#add_video_link").val(),
+    userName: SESSION.userName
+  };
+  const video = await categoryInfo.save("video", videoData);
+  renderContent();
+  if (video.length !== 0) {
+    Notify.success({
+      title: "Video Added",
+      html: `"${video.title}" has been successfully added.`,
+    });
+    $("#modal_add_video").modal("close");
   } else {
     Notify.error({
       title: "Invalid Data",

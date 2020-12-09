@@ -686,9 +686,32 @@
     </script>
     <!-- END OF LINK SCRIPT -->
     <!-- ENTERTAINMENT SCRIPT -->
-    <script id="entertainments-template" type="text/x-handlebars-template">
+    <script id="movies-template" type="text/x-handlebars-template">
       {{#each this}}
-        <div class='entertainment' data-id='{{this._id}}'>
+        <div class='movies' data-id='{{this._id}}'>
+          <div class="col s2 m2">
+            <div class="card">
+              <div class="card-image">
+                <img src='{{this.pic}}'>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+              </div>
+              <div class="card-content">
+                <b>
+                  <p>{{this.title}}</p>
+                </b>
+                <p>{{this.plot}}</p>
+                <p>{{this.year}}</p>
+                <p>{{this.rate}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </script>
+    <!-- END OF ENTERTAINMENT SCRIPT -->
+    <script id="serieses-template" type="text/x-handlebars-template">
+      {{#each this}}
+        <div class='serieses' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
               <div class="card-image">
