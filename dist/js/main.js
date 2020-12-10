@@ -33,7 +33,8 @@ $("#form_register").on("submit", async () => {
   const userData = {
     userName: $("#register_username").val(),
     password: $("#register_password").val(),
-    isPublic: $("#ispublic_register").prop("checked")
+    isPublic: $("#ispublic_register").prop("checked"),
+    isDarkMode: false
   };
   await user.RegisterUser(userData);
   return false;
@@ -53,6 +54,7 @@ const renderContent = async function(){
   const categoryName = $("#navs").find(".active .menu_item_text").text().toLowerCase();
   const data = await categoryInfo.get(categoryName, SESSION.userName);
   const count = await categoryInfo.getCount(categoryName);
+  renderMode();
   renderer.renderData(data, "#" + categoryName + "-template", count, categoryName);
 };
 
@@ -77,7 +79,6 @@ const checkIfLoggedIn = async () => {
 };
 
 $("#logout").on("click", function () {
-  console.log("good");
   $.get("/sessionDelete", function (n) {
     location.reload();
   });
@@ -138,10 +139,24 @@ $("#floating_addnew_item").on('click', function () {
   }
 });
 
-$("#settings").on('click', function () {
-  //TODO
-  alert("settings");
-});
+const renderMode = function(){
+  if(SESSION.isDarkMode){
+    $('body').css("background-color","grey");
+    $('.collection a').css("background-color","grey");
+    $('#isDarkMode').prop("checked", true)
+  }else{
+    $('body').css("background-color","white");
+    $('.collection a').css("background-color","white");
+  }
+}
+
+const updateMode = function (){
+  user.userMode(SESSION.userName);
+  SESSION.isDarkMode = !SESSION.isDarkMode;
+  renderMode();
+}
+
+$("#isDarkMode").on('click', updateMode);
 
 $("#navs").on('click', '.remove-item', async function () {
   const id = $(this).closest('#content').find("div").attr('data-id');
@@ -178,7 +193,7 @@ $("#form_modal_add_book").on("submit", async () => {
     author: $("#add_book_author").val(),
     description: $("#add_book_description").val(),
     thumbnail: $("#add_book_thumbnail").val(),
-    userName: SESSION.userName
+    userName: SESSION.userName,
   };
 
   const book = await categoryInfo.save("book", bookData);

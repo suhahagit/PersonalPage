@@ -17,6 +17,17 @@ class User {
     });
   }
 
+  async userMode(userName) {
+    await $.ajax({
+      url: `/update/${userName}`,
+      method: "PUT",
+      success: function () { },
+      error: function (xhr, text, error) {
+        console.log(text);
+      }
+    });
+  }
+
   async LoginUser(loginData) {
     $.post('/user/login', loginData, function (user) {
       if (user.length !== 0) {
