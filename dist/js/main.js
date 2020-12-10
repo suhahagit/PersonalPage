@@ -142,11 +142,9 @@ $("#floating_addnew_item").on('click', function () {
 const renderMode = function(){
   if(SESSION.isDarkMode){
     $('body').css("background-color","grey");
-    $('.collection a').css("background-color","grey");
-    $('#isDarkMode').prop("checked", true)
+    $('#isDarkMode').prop("checked", true);
   }else{
     $('body').css("background-color","white");
-    $('.collection a').css("background-color","white");
   }
 }
 
@@ -166,8 +164,7 @@ $("#navs").on('click', '.remove-item', async function () {
 });
 
 $("#btn_search").on("click", function () {
-  //TODO
-  alert($("#txt_search").val());
+  alert("TODO");
 });
 
 $(".menu_item").on("click", function () {
@@ -179,7 +176,7 @@ $(".menu_item").on("click", function () {
 
 $("#btn_find_book").on("click", async () => {
   const bookName = encodeURI($("#txt_find_book").val());
-  const books = await getAPIs.getBook(bookName)
+  const books = await getAPIs.getBook(bookName);
   $("#add_book_title").val(books[0].title);
   if (books[0].author) $("#add_book_author").val(books[0].author[0]);
   if (books[0].description)
@@ -201,13 +198,13 @@ $("#form_modal_add_book").on("submit", async () => {
   if (book.length !== 0) {
     Notify.success({
       title: "Book Added",
-      html: `"${book.title}" has been successfully added.`,
+      html: `"${book.title}" has been successfully added.`
     });
     $("#modal_add_book").modal("close");
   } else {
     Notify.error({
       title: "Invalid Data",
-      html: "Invalid parameters!",
+      html: "Invalid parameters!"
     });
   }
   return false;
@@ -215,7 +212,7 @@ $("#form_modal_add_book").on("submit", async () => {
 
 $("#btn_find_movie").on("click", async () => {
   const movieName = encodeURI($("#txt_find_movie").val());
-  const movie = await getAPIs.getMovie(movieName)
+  const movie = await getAPIs.getMovie(movieName);
   $("#add_movie_title").val(movie.title);
   $("#add_movie_plot").val(movie.plot);
   $("#add_movie_year").val(movie.year);
@@ -246,14 +243,13 @@ $("#form_modal_add_movie").on('submit', async () => {
         title: 'Invalid Data',
         html: 'Invalid parameters!'
       });
-    
   }
   return false;
 });
 
 $("#btn_find_series").on("click", async () => {
   const seriesName = encodeURI($("#txt_find_series").val());
-  const series = await getAPIs.getMovie(seriesName)
+  const series = await getAPIs.getMovie(seriesName);
   $("#add_series_title").val(series.title);
   $("#add_series_plot").val(series.plot);
   $("#add_series_year").val(series.year);
@@ -284,7 +280,6 @@ $("#form_modal_add_series").on('submit', async () => {
         title: 'Invalid Data',
         html: 'Invalid parameters!'
       });
-    
   }
   return false;
 });
@@ -301,13 +296,13 @@ $("#form_modal_add_link").on("submit", async () => {
   if (link.length !== 0) {
     Notify.success({
       title: "Link Added",
-      html: `"${link.title}" has been successfully added.`,
+      html: `"${link.title}" has been successfully added.`
     });
     $("#modal_add_link").modal("close");
   } else {
     Notify.error({
       title: "Invalid Data",
-      html: "Invalid parameters!",
+      html: "Invalid parameters!"
     });
   }
   return false;
@@ -325,13 +320,13 @@ $("#form_modal_add_note").on("submit", async () => {
   if (note.length !== 0) {
     Notify.success({
       title: "Note Added",
-      html: `"${note.title}" has been successfully added.`,
+      html: `"${note.title}" has been successfully added.`
     });
     $("#modal_add_note").modal("close");
   } else {
     Notify.error({
       title: "Invalid Data",
-      html: "Invalid parameters!",
+      html: "Invalid parameters!"
     });
   }
   return false;
@@ -349,13 +344,13 @@ $("#form_modal_add_picture").on("submit", async () => {
   if (picture.length !== 0) {
     Notify.success({
       title: "Picture Added",
-      html: `"${picture.title}" has been successfully added.`,
+      html: `"${picture.title}" has been successfully added.`
     });
     $("#modal_add_picture").modal("close");
   } else {
     Notify.error({
       title: "Invalid Data",
-      html: "Invalid parameters!",
+      html: "Invalid parameters!"
     });
   }
   return false;
@@ -372,13 +367,13 @@ $("#form_modal_add_quote").on("submit", async () => {
   if (quote.length !== 0) {
     Notify.success({
       title: "Quote Added",
-      html: `"${quote.author}" has been successfully added.`,
+      html: `"${quote.author}" has been successfully added.`
     });
     $("#modal_add_quote").modal("close");
   } else {
     Notify.error({
       title: "Invalid Data",
-      html: "Invalid parameters!",
+      html: "Invalid parameters!"
     });
   }
   return false;
@@ -396,13 +391,13 @@ $("#form_modal_add_recipe").on("submit", async () => {
   if (recipe.length !== 0) {
     Notify.success({
       title: "Recipe Added",
-      html: `"${recipe.name}" has been successfully added.`,
+      html: `"${recipe.name}" has been successfully added.`
     });
     $("#modal_add_recipe").modal("close");
   } else {
     Notify.error({
       title: "Invalid Data",
-      html: "Invalid parameters!",
+      html: "Invalid parameters!"
     });
   }
   return false;
@@ -421,13 +416,13 @@ $("#form_modal_add_restaurant").on("submit", async () => {
   if (restaurant.length !== 0) {
     Notify.success({
       title: "Restaurant Added",
-      html: `"${restaurant.name}" has been successfully added.`,
+      html: `"${restaurant.name}" has been successfully added.`
     });
     $("#modal_add_restaurant").modal("close");
   } else {
     Notify.error({
       title: "Invalid Data",
-      html: "Invalid parameters!",
+      html: "Invalid parameters!"
     });
   }
   return false;
@@ -445,13 +440,13 @@ $("#form_modal_add_video").on("submit", async () => {
   if (video.length !== 0) {
     Notify.success({
       title: "Video Added",
-      html: `"${video.title}" has been successfully added.`,
+      html: `"${video.title}" has been successfully added.`
     });
     $("#modal_add_video").modal("close");
   } else {
     Notify.error({
       title: "Invalid Data",
-      html: "Invalid parameters!",
+      html: "Invalid parameters!"
     });
   }
   return false;

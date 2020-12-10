@@ -51,20 +51,6 @@ class User {
     return check;
   }
 }
-
-// async findUser(userName) {
-//   const userData = await $.get(`/user/${userName}`);
-//   this.data = userData;
-// }
-
-// async updateUser(userName) {
-//   await $.ajax({
-//     url: `/user/${userName}`,
-//     method: "PUT",
-//     success: () => {},
-//   });
-// }
-
 class Category {
   constructor() {
     this.data = [];
@@ -94,7 +80,6 @@ class Category {
     });
   }
 }
-
 
 class APIs {
   async getWeather(lati, long) {
