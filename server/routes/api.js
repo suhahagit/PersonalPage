@@ -578,7 +578,7 @@ router.get('/count/:categoryName', async function (req, res) {
                 count = await Recipe.countDocuments({});
                 break;
             case "restaurants":
-                count = await Restaurant.count({});
+                count = await Restaurant.countDocuments({});
                 break;
         }
         res.json(count);
