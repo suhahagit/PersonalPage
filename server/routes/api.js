@@ -111,9 +111,9 @@ router.post('/user/register', async function (req, res) {
 //$set:
 router.put('/update/:userName', async function (req, res) {
     try {
-        const user = await User.findOneAndUpdate({ userName: req.params.userName }, {  isDarkMode: !sess.isDarkMode }, { new: true })
+        const user = await User.findOneAndUpdate({ userName: req.params.userName }, {  isDarkMode: !sess.isDarkMode }, { new: true });
         sess.isDarkMode = !sess.isDarkMode;
-        res.send(user)
+        res.send(user);
     } catch (error) {
         console.log(error);
         res.send(null);
@@ -165,8 +165,7 @@ router.post('/book', async function (req, res) {
         res.send(null);
     }
 });
-// router.put('/book/:bookName', async function (req, res) {
-// });
+
 router.delete('/books/:bookId', async function (req, res) {
     try {
         const book = await Book.findByIdAndRemove({ _id: req.params.bookId });
@@ -177,8 +176,6 @@ router.delete('/books/:bookId', async function (req, res) {
     }
 });
 /* END OF BOOK SCHEME */
-
-// router.post('/book', async function(req, res){
 
 /* LINK SCHEME */
 router.get('/links/:userName', async function (req, res) {
@@ -202,9 +199,6 @@ router.post('/link', async function (req, res) {
     }
 });
 
-// router.put('/link/:linkName', async function (req, res) {
-// });
-
 router.delete('/links/:linkID', async function (req, res) {
     try {
         const link = await Link.findByIdAndRemove({ _id: req.params.linkID });
@@ -215,8 +209,6 @@ router.delete('/links/:linkID', async function (req, res) {
     }
 });
 /* END OF LINK SCHEME */
-
-// router.post('/link', async function(req, res){
 
 /* NOTE SCHEME */
 router.get('/notes/:userName', async function (req, res) {
@@ -240,9 +232,6 @@ router.post('/note', async function (req, res) {
     }
 });
 
-// router.put('/note/:noteName', async function (req, res) {
-// });
-
 router.delete('/notes/:noteID', async function (req, res) {
     try {
         const note = await Note.findByIdAndRemove({ _id: req.params.noteID });
@@ -253,8 +242,6 @@ router.delete('/notes/:noteID', async function (req, res) {
     }
 });
 /* END OF NOTE SCHEME */
-
-// router.post('/note', async function(req, res){
 
 /* PICTURE SCHEME */
 router.get('/pictures/:userName', async function (req, res) {
@@ -278,9 +265,6 @@ router.post('/picture', async function (req, res) {
     }
 });
 
-// router.put('/picture/:pictureName', async function (req, res) {
-// });
-
 router.delete('/pictures/:pictureID', async function (req, res) {
     try {
         const picture = await Picture.findByIdAndRemove({ _id: req.params.pictureID });
@@ -291,8 +275,6 @@ router.delete('/pictures/:pictureID', async function (req, res) {
     }
 });
 /* END OF PICTURE SCHEME */
-
-// router.post('/picture', async function(req, res){
 
 /* QUOTE SCHEME */
 router.get('/quotes/:userName', async function (req, res) {
@@ -316,9 +298,6 @@ router.post('/quote', async function (req, res) {
     }
 });
 
-// router.put('/quote/:quoteName', async function (req, res) {
-// });
-
 router.delete('/quotes/:quoteID', async function (req, res) {
     try {
         const quote = await Quote.findByIdAndRemove({ _id: req.params.quoteID });
@@ -329,8 +308,6 @@ router.delete('/quotes/:quoteID', async function (req, res) {
     }
 });
 /* END OF QUOTE SCHEME */
-
-// router.post('/quote', async function(req, res){
 
 /* RECIPE SCHEME */
 router.get('/recipes/:userName', async function (req, res) {
@@ -354,9 +331,6 @@ router.post('/recipe', async function (req, res) {
     }
 });
 
-// router.put('/recipe/:recipeName', async function (req, res) {
-// });
-
 router.delete('/recipes/:recipeID', async function (req, res) {
     try {
         const recipe = await Recipe.findByIdAndRemove({ _id: req.params.recipeID });
@@ -367,8 +341,6 @@ router.delete('/recipes/:recipeID', async function (req, res) {
     }
 });
 /* END OF RECIPE SCHEME */
-
-// router.post('/recipe', async function(req, res){
 
 /* RESTAURANT SCHEME */
 router.get('/restaurants/:userName', async function (req, res) {
@@ -392,9 +364,6 @@ router.post('/restaurant', async function (req, res) {
     }
 });
 
-// router.put('/restaurant/:restaurantName', async function (req, res) {
-// });
-
 router.delete('/restaurants/:restaurantId', async function (req, res) {
     try {
         const restaurant = await Restaurant.findByIdAndRemove({ _id: req.params.restaurantId });
@@ -405,8 +374,6 @@ router.delete('/restaurants/:restaurantId', async function (req, res) {
     }
 });
 /* END OF RESTAURANT SCHEME */
-
-// router.post('/restaurant', async function(req, res){
 
 /* VIDEO SCHEME */
 router.get('/videos/:userName', async function (req, res) {
@@ -430,9 +397,6 @@ router.post('/video', async function (req, res) {
     }
 });
 
-// router.put('/video/:videoName', async function (req, res) {
-// });
-
 router.delete('/videos/:videoId', async function (req, res) {
     try {
         const video = await Video.findByIdAndRemove({ _id: req.params.videoId });
@@ -443,8 +407,6 @@ router.delete('/videos/:videoId', async function (req, res) {
     }
 });
 /* END OF VIDEO SCHEME */
-
-// router.post('/video', async function(req, res){
 
 /* MOVIE SCHEME */
 router.get('/movies/:userName', async function (req, res) {
@@ -458,7 +420,6 @@ router.get('/movies/:userName', async function (req, res) {
 });
 
 router.get('/movie/:movieName', async function (req, res) {
-    //API TODO
     //example: `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=mirage`
     try {
         const movieData = await axios.get(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${req.params.movieName}`);
@@ -487,9 +448,6 @@ router.post('/movie', async function (req, res) {
     }
 });
 
-// router.put('/movie/:movieName', async function (req, res) {
-// });
-
 router.delete('/movies/:movieId', async function (req, res) {
     try {
         const movie = await Movie.findByIdAndRemove({ _id: req.params.movieId });
@@ -513,7 +471,6 @@ router.get('/serieses/:userName', async function (req, res) {
 });
 
 router.get('/series/:seriesName', async function (req, res) {
-    //API TODO
     //example: `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=mirage`
     try {
         const seriesData = await axios.get(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&t=${req.params.seriesName}`);
@@ -541,9 +498,6 @@ router.post('/series', async function (req, res) {
         res.send(null);
     }
 });
-
-// router.put('/series/:seriesName', async function (req, res) {
-// });
 
 router.delete('/serieses/:seriesId', async function (req, res) {
     try {
