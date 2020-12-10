@@ -6,7 +6,7 @@
     <title>Personal Page</title>
     <link rel="icon" href="./icon.png" type="image/icon type">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Acme&Roboto:300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/font-awesome-all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/materialize-css/dist/css/materialize.min.css">
@@ -83,7 +83,7 @@
           </div>
           <label>
             <input id="ispublic_register" type="checkbox" class="filled-in">
-            <span>Public Profile</span>
+            <span id="label_public_profile">Public Profile</span>
           </label>
           <br><br>
           <input id="btn_register" type="submit" value="Register" class="btn btn-large">
@@ -424,7 +424,7 @@
     <!-- end of video modal -->
 
     <div id="floating_addnew_item">
-      <a class="btn-floating btn-large waves-effect waves-light red"><i class="large material-icons">add</i></a>
+      <a class="btn-floating btn-large waves-effect waves-light pulse red"><i class="large material-icons">add</i></a>
     </div>
 
     <div id="navs" class="row">
@@ -672,9 +672,9 @@
         <div class='link' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
-              <div class="card-image">
+              <div class="card-image card-content">
                 <a href="{{this.link}}">{{this.title}}</a>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item text_floating_removeBtn"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
                 <p>{{this.description}}</p>
@@ -715,14 +715,14 @@
         <div class='note' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
-              <div class="card-image">
-                <p>{{this.note}}</p>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
-              </div>
-              <div class="card-content">
+              <div class="card-image card-content">
                 <b>
                   <p>{{this.title}}</p>
                 </b>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item text_floating_removeBtn"><i class="material-icons">remove</i></a>
+              </div>
+              <div class="card-content">
+                <p>{{this.note}}</p>
               </div>
             </div>
           </div>
@@ -755,12 +755,12 @@
         <div class='quote' data-id='{{this._id}}'>
           <div class="col s2 m2">
             <div class="card">
-              <div class="card-image">
+              <div class="card-image card-content">
                 <p>"{{this.quote}}"</p>
-                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item"><i class="material-icons">remove</i></a>
+                <a class="btn-floating halfway-fab waves-effect waves-light red remove-item text_floating_removeBtn"><i class="material-icons">remove</i></a>
               </div>
               <div class="card-content">
-                <p>-{{this.author}}</p>
+                <i><p>-{{this.author}}</p></i>
               </div>
             </div>
           </div>
